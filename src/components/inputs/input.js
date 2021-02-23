@@ -3,34 +3,52 @@ import styled from 'styled-components/native';
 
 export default function Input(props) {
   return (
-    <FormInput
-      defaultValue={props.defaultValue}
-      placeholder={props.placeholder}
-      secureTextEntry={props.hidden}
-      autoCompleteType={props.autoCompleteType}
-      keyboardType={props.keyboardType}
-      blurOnSubmit={true}
-      clearTextOnFocus={true}
-      editable={props.editable}
-      width={props.width}
+    <Container
       margin={props.margin}
-      maxLength={props.maxLength}
-      onChangeText={props.onChangeText}
-      font={props.font}
-      bgcolor={props.bgcolor}
-    />
+      hidden={props.hidden}
+      bgcolor={props.bgcolor}>
+      <FormInput
+        defaultValue={props.defaultValue}
+        placeholder={props.placeholder}
+        secureTextEntry={props.hidden}
+        autoCompleteType={props.autoCompleteType}
+        keyboardType={props.keyboardType}
+        blurOnSubmit={true}
+        clearTextOnFocus={true}
+        editable={props.editable}
+        width={props.width}
+        maxLength={props.maxLength}
+        onChangeText={props.onChangeText}
+        font={props.font}
+      />
+      {props.image ? <ImageContainer source={props.image} /> : null}
+    </Container>
   );
 }
+
+const Container = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: ${(props) => props.bgcolor || 'transparent'};
+  border-radius: 4px;
+  width: ${(props) => props.width || 320}px;
+  margin: ${(props) => props.margin || 10}px;
+  display: ${(props) => (props.hidden ? 'none' : 'flex')};
+  border: 1px solid #333333;
+`;
 
 const FormInput = styled.TextInput`
   background-color: ${(props) => props.bgcolor || 'transparent'};
   font-size: ${(props) => props.font || 18}px;
   color: #333333;
-  border-radius: 4px;
-  width: ${(props) => props.width || 260}px;
   text-align: left;
   padding: 12px;
-  margin: ${(props) => props.margin || 10}px;
-  display: ${(props) => (props.hidden ? 'none' : 'flex')};
-  border: 1px solid #333333;
+  width: 280px;
+`;
+
+const ImageContainer = styled.Image`
+  width: 20px;
+  height: 20px;
+  margin: 10px;
 `;
