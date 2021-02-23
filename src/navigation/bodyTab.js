@@ -19,7 +19,7 @@ export default function BodyTab({route, navigation}) {
           } else if (route.name === 'Cart') {
             return <TabBarIcon source={require('../assets/cart.png')} />;
           } else if (route.name === 'Favorites') {
-            return <TabBarIcon source={require('../assets/favorite.png')} />;
+            return <TabBarIcon source={require('../assets/favorites.png')} />;
           } else if (route.name === 'Orders') {
             return <TabBarIcon source={require('../assets/orders.png')} />;
           }

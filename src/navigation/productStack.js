@@ -51,7 +51,7 @@ function DashIcon(props) {
       onPress={() => {
         navigation.toggleDrawer();
       }}>
-      <ImageContainer source={require('../assets/dash.png')} />
+      <ImageContainer source={require('../assets/menu.png')} />
     </Button>
   );
 }
