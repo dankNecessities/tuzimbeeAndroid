@@ -13,26 +13,47 @@ export default function BodyTab({route, navigation}) {
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           if (route.name === 'Product') {
-            return <TabBarIcon source={require('../assets/home.png')} />;
+            return focused ? (
+              <TabBarIcon source={require('../assets/home_focused.png')} />
+            ) : (
+              <TabBarIcon source={require('../assets/home.png')} />
+            );
           } else if (route.name === 'Search') {
-            return <TabBarIcon source={require('../assets/search.png')} />;
+            return focused ? (
+              <TabBarIcon source={require('../assets/search_focused.png')} />
+            ) : (
+              <TabBarIcon source={require('../assets/search.png')} />
+            );
           } else if (route.name === 'Cart') {
-            return <TabBarIcon source={require('../assets/cart.png')} />;
+            return focused ? (
+              <TabBarIcon source={require('../assets/cart_focused.png')} />
+            ) : (
+              <TabBarIcon source={require('../assets/cart.png')} />
+            );
           } else if (route.name === 'Favorites') {
-            return <TabBarIcon source={require('../assets/favorites.png')} />;
+            return focused ? (
+              <TabBarIcon source={require('../assets/favorites_focused.png')} />
+            ) : (
+              <TabBarIcon source={require('../assets/favorites.png')} />
+            );
           } else if (route.name === 'Orders') {
-            return <TabBarIcon source={require('../assets/orders.png')} />;
+            return focused ? (
+              <TabBarIcon source={require('../assets/orders_focused.png')} />
+            ) : (
+              <TabBarIcon source={require('../assets/orders.png')} />
+            );
           }
         },
       })}
       tabBarOptions={{
         keyboardHidesTabBar: true,
-        activeTintColor: '#ffffff',
-        inactiveTintColor: '#ffffff',
+        activeTintColor: '#f2994a',
+        inactiveTintColor: '#bdbdbd',
         style: {
           backgroundColor: '#333333',
           height: 50,
         },
+        animationEnabled: true,
       }}>
       <Tab.Screen
         name="Product"
