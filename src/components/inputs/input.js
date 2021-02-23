@@ -6,7 +6,8 @@ export default function Input(props) {
     <Container
       margin={props.margin}
       hidden={props.hidden}
-      bgcolor={props.bgcolor}>
+      bgcolor={props.bgcolor}
+      borderColor={props.borderColor}>
       <FormInput
         defaultValue={props.defaultValue}
         placeholder={props.placeholder}
@@ -35,7 +36,7 @@ const Container = styled.View`
   width: ${(props) => props.width || 320}px;
   margin: ${(props) => props.margin || 10}px;
   display: ${(props) => (props.hidden ? 'none' : 'flex')};
-  border: 1px solid #333333;
+  border: 1px solid ${(props) => props.borderColor || '#333333'};
 `;
 
 const FormInput = styled.TextInput`
