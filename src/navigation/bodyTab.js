@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import IconButton from '../components/buttons/iconButton';
 import styled from 'styled-components/native';
 import ProductStack from './productStack';
 
@@ -10,8 +11,11 @@ export default function BodyTab({route, navigation}) {
 
   return (
     <Tab.Navigator
+      initialRoute="Home"
       screenOptions={({route}) => ({
-        tabBarButton: (props) => <TabButton {...props} />,
+        tabBarButton: (props) => (
+          <IconButton {...props} underlayColor="#f2994a" />
+        ),
         tabBarIcon: ({focused, color, size}) => {
           if (route.name === 'Product') {
             return focused ? (
@@ -110,12 +114,4 @@ const Container = styled.View`
 const IconImage = styled.Image`
   width: 20px;
   height: 20px;
-`;
-
-const TabButton = styled.TouchableHighlight`
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 15px;
-  padding: 2px;
 `;

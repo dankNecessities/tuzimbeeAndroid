@@ -2,6 +2,7 @@ import * as React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/homeScreen';
+import IconButton from '../components/buttons/iconButton';
 import styled from 'styled-components';
 
 const Stack = createStackNavigator();
@@ -33,12 +34,20 @@ function LogoTitle(props) {
     <Container>
       <Title>{props.title}</Title>
       <Container>
-        <Button>
+        <IconButton
+          underlayColor="#f2994a"
+          onPress={() => {
+            console.log('Bell Pressed');
+          }}>
           <ImageContainer source={require('../assets/bell.png')} />
-        </Button>
-        <Button>
+        </IconButton>
+        <IconButton
+          underlayColor="#f2994a"
+          onPress={() => {
+            console.log('Notification Pressed');
+          }}>
           <ImageContainer source={require('../assets/share.png')} />
-        </Button>
+        </IconButton>
       </Container>
     </Container>
   );
@@ -47,12 +56,12 @@ function LogoTitle(props) {
 function DashIcon(props) {
   const navigation = useNavigation();
   return (
-    <Button
+    <IconButton
       onPress={() => {
         navigation.toggleDrawer();
       }}>
       <ImageContainer source={require('../assets/menu.png')} />
-    </Button>
+    </IconButton>
   );
 }
 
@@ -74,5 +83,3 @@ const ImageContainer = styled.Image`
   height: 20px;
   margin: 15px;
 `;
-
-const Button = styled.TouchableOpacity``;
