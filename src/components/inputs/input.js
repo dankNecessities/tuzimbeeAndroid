@@ -10,7 +10,7 @@ export default function Input(props) {
       <FormInput
         defaultValue={props.defaultValue}
         placeholder={props.placeholder}
-        secureTextEntry={props.hidden}
+        secureTextEntry={props.secure}
         autoCompleteType={props.autoCompleteType}
         keyboardType={props.keyboardType}
         blurOnSubmit={true}
