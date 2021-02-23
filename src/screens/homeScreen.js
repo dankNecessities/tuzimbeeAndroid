@@ -5,36 +5,38 @@ import Input from '../components/inputs/input';
 import GenericButton from '../components/buttons/genericButton';
 
 export default function SignInScreen({navigation}) {
-  const [remember, setRemember] = useState(false);
+  const [searchString, setSearchString] = useState('');
 
   const goToLogin = () => {
     navigation.navigate('Login');
   };
 
   return (
-    <Container>
+    <Container
+      // eslint-disable-next-line react-native/no-inline-styles
+      contentContainerStyle={{
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+      }}>
       <StatusBar backgroundColor="#333333" />
-      <Header>Sign Up</Header>
-      <Input placeholder="Username" width={300} />
-      <Input placeholder="Phone Number" width={300} keyboardType="numeric" />
-      <Input placeholder="Email Address" width={300} />
-      <Input placeholder="Password" width={300} hidden={true} />
-      <Input placeholder="Confirm Password" width={300} hidden={true} />
-      <GenericButton title="SIGN UP" />
-      <Button onPress={goToLogin}>
-        <Text>Have an account? Sign in</Text>
-      </Button>
+      <Input
+        placeholder="Search"
+        image={require('../assets/search_home.png')}
+        borderColor="#e0e0e0"
+      />
+      <Header>Categories</Header>
+      <Header>Trending</Header>
+      <Header>Latest</Header>
     </Container>
   );
 }
 
-const Container = styled.View`
+const Container = styled.ScrollView`
   flex-direction: column;
   background-color: #ffffff;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   width: 100%;
+  padding: 30px 20px 20px 20px;
 `;
 
 const RowContainer = styled.View`
@@ -51,13 +53,12 @@ const ImageContainer = styled.Image`
 `;
 
 const Header = styled.Text`
-  font-size: 40px;
+  font-size: 30px;
   color: #000000;
   font-family: 'Roboto-Light';
   margin: 10px;
+  width: 100%;
 `;
-
-const Button = styled.TouchableOpacity``;
 
 const Text = styled.Text`
   font-size: 14px;
