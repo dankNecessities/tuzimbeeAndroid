@@ -21,7 +21,7 @@ export default function LoginScreen({navigation}) {
       />
       <Header>Sign In</Header>
       <Input placeholder="Username" width={300} />
-      <Input placeholder="Password" width={300} hidden={true} />
+      <Input placeholder="Password" width={300} secure={true} />
       <RowContainer width={300}>
         <RowContainer>
           <CheckBox

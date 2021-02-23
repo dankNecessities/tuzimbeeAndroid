@@ -16,8 +16,8 @@ export default function SignInScreen({navigation}) {
       <Input placeholder="Username" width={300} />
       <Input placeholder="Phone Number" width={300} keyboardType="numeric" />
       <Input placeholder="Email Address" width={300} />
-      <Input placeholder="Password" width={300} hidden={true} />
-      <Input placeholder="Confirm Password" width={300} hidden={true} />
+      <Input placeholder="Password" width={300} secure={true} />
+      <Input placeholder="Confirm Password" width={300} secure={true} />
       <GenericButton title="SIGN UP" />
       <Button onPress={goToLogin}>
         <Text>Have an account? Sign in</Text>
