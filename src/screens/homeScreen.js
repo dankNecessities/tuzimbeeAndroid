@@ -3,15 +3,16 @@ import {StatusBar} from 'react-native';
 import styled from 'styled-components/native';
 import Input from '../components/inputs/input';
 import MenuButton from '../components/buttons/menuButton';
+import Product from '../components/items/product';
 
 export default function SignInScreen({navigation}) {
   const [searchString, setSearchString] = useState('');
 
-  const goToLogin = () => {
-    navigation.navigate('Login');
+  const goToScreen = (screen) => {
+    navigation.navigate(screen);
   };
 
-  const rows = [
+  const categoryRows = [
     [
       {
         text: 'Plumbing',
@@ -48,6 +49,24 @@ export default function SignInScreen({navigation}) {
     ],
   ];
 
+  const trendingRows = [
+    {
+      title: 'Tough Bond',
+      price: '10000',
+      source: require('../assets/products/bond.png'),
+    },
+    {
+      title: 'Tough Bond',
+      price: '10000',
+      source: require('../assets/products/bond.png'),
+    },
+    {
+      title: 'Tough Bond',
+      price: '10000',
+      source: require('../assets/products/bond.png'),
+    },
+  ];
+
   return (
     <Container
       // eslint-disable-next-line react-native/no-inline-styles
@@ -64,7 +83,7 @@ export default function SignInScreen({navigation}) {
       />
       <Header>Categories</Header>
       <CategoryContainer>
-        {rows.map((_, i) => {
+        {categoryRows.map((_, i) => {
           return (
             <RowContainer>
               {_.map((item, index) => {
@@ -74,9 +93,38 @@ export default function SignInScreen({navigation}) {
           );
         })}
       </CategoryContainer>
-
       <Header>Trending</Header>
+      <CategoryContainer>
+        <ItemScroll
+          horizontal={true}
+          data={trendingRows}
+          renderItem={({item, index}) => {
+            return (
+              <Product
+                title={item.title}
+                price={item.price}
+                source={item.source}
+              />
+            );
+          }}
+        />
+      </CategoryContainer>
       <Header>Latest</Header>
+      <CategoryContainer>
+        <ItemScroll
+          horizontal={true}
+          data={trendingRows}
+          renderItem={({item, index}) => {
+            return (
+              <Product
+                title={item.title}
+                price={item.price}
+                source={item.source}
+              />
+            );
+          }}
+        />
+      </CategoryContainer>
     </Container>
   );
 }
@@ -84,7 +132,6 @@ export default function SignInScreen({navigation}) {
 const Container = styled.ScrollView`
   flex-direction: column;
   background-color: #ffffff;
-  height: 100%;
   width: 100%;
   padding: 30px 20px 20px 20px;
 `;
@@ -95,10 +142,14 @@ const RowContainer = styled.View`
   justify-content: flex-start;
 `;
 
-const CategoryContainer = styled.View`
+const CategoryContainer = styled.ScrollView`
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  width: 100%;
+`;
+
+const ItemScroll = styled.FlatList`
+  flex-direction: row;
+  width: 100%;
 `;
 
 const Header = styled.Text`
