@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default function MenuButton(props) {
   return (
-    <Container>
+    <Container onPress={props.onPress}>
       <Image resizeMode="contain" source={props.source} />
       <Text>{props.text}</Text>
     </Container>
