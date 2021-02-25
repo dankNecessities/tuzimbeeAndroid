@@ -68,72 +68,82 @@ export default function SignInScreen({navigation}) {
   ];
 
   return (
-    <Container
-      // eslint-disable-next-line react-native/no-inline-styles
-      contentContainerStyle={{
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-      }}>
-      <StatusBar backgroundColor="#333333" />
-      <Input
-        onChangeText={(text) => setSearchString(text)}
-        placeholder="Search"
-        image={require('../assets/search_home.png')}
-        borderColor="#e0e0e0"
-      />
-      <Header>Categories</Header>
-      <CategoryContainer>
-        {categoryRows.map((_, i) => {
-          return (
-            <RowContainer>
-              {_.map((item, index) => {
-                return <MenuButton text={item.text} source={item.source} />;
-              })}
-            </RowContainer>
-          );
-        })}
-      </CategoryContainer>
-      <Header>Trending</Header>
-      <CategoryContainer>
-        <ItemScroll
-          horizontal={true}
-          data={trendingRows}
-          renderItem={({item, index}) => {
-            return (
-              <Product
-                title={item.title}
-                price={item.price}
-                source={item.source}
-              />
-            );
-          }}
+    <MainContainer>
+      <Container
+        // eslint-disable-next-line react-native/no-inline-styles
+        contentContainerStyle={{
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+        }}>
+        <StatusBar backgroundColor="#333333" />
+        <Input
+          onChangeText={(text) => setSearchString(text)}
+          placeholder="Search"
+          image={require('../assets/search_home.png')}
+          borderColor="#e0e0e0"
         />
-      </CategoryContainer>
-      <Header>Latest</Header>
-      <CategoryContainer>
-        <ItemScroll
-          horizontal={true}
-          data={trendingRows}
-          renderItem={({item, index}) => {
+        <Header>Categories</Header>
+        <CategoryContainer>
+          {categoryRows.map((_, i) => {
             return (
-              <Product
-                title={item.title}
-                price={item.price}
-                source={item.source}
-              />
+              <RowContainer>
+                {_.map((item, index) => {
+                  return <MenuButton text={item.text} source={item.source} />;
+                })}
+              </RowContainer>
             );
-          }}
-        />
-      </CategoryContainer>
-    </Container>
+          })}
+        </CategoryContainer>
+        <Header>Trending</Header>
+        <CategoryContainer>
+          <ItemScroll
+            horizontal={true}
+            data={trendingRows}
+            renderItem={({item, index}) => {
+              return (
+                <Product
+                  title={item.title}
+                  price={item.price}
+                  source={item.source}
+                />
+              );
+            }}
+          />
+        </CategoryContainer>
+        <Header>Latest</Header>
+        <CategoryContainer>
+          <ItemScroll
+            horizontal={true}
+            data={trendingRows}
+            renderItem={({item, index}) => {
+              return (
+                <Product
+                  title={item.title}
+                  price={item.price}
+                  source={item.source}
+                />
+              );
+            }}
+          />
+        </CategoryContainer>
+      </Container>
+    </MainContainer>
   );
 }
 
-const Container = styled.ScrollView`
+const MainContainer = styled.View`
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+`;
+
+const Container = styled.ScrollView`
   background-color: #ffffff;
   width: 100%;
-  padding: 30px 20px 20px 20px;
 `;
 
 const RowContainer = styled.View`
