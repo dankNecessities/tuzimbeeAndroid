@@ -53,17 +53,17 @@ export default function HomeScreen({navigation}) {
     {
       title: 'Tough Bond',
       price: '10000',
-      source: require('../assets/products/bond.png'),
+      source: require('../assets/products/bond.jpg'),
     },
     {
       title: 'Tough Bond',
       price: '10000',
-      source: require('../assets/products/bond.png'),
+      source: require('../assets/products/bond.jpg'),
     },
     {
       title: 'Tough Bond',
       price: '10000',
-      source: require('../assets/products/bond.png'),
+      source: require('../assets/products/bond.jpg'),
     },
   ];
 
