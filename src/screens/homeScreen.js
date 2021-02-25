@@ -5,7 +5,7 @@ import Input from '../components/inputs/input';
 import MenuButton from '../components/buttons/menuButton';
 import Product from '../components/items/product';
 
-export default function SignInScreen({navigation}) {
+export default function HomeScreen({navigation}) {
   const [searchString, setSearchString] = useState('');
 
   const goToScreen = (screen) => {
