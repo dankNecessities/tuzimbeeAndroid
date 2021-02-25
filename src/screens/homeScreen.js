@@ -19,7 +19,6 @@ export default function SignInScreen({navigation}) {
         justifyContent: 'flex-start',
       }}>
       <StatusBar backgroundColor="#333333" />
-
       <Input
         onChangeText={(text) => setSearchString(text)}
         placeholder="Search"
@@ -27,37 +26,42 @@ export default function SignInScreen({navigation}) {
         borderColor="#e0e0e0"
       />
       <Header>Categories</Header>
-      <RowContainer>
-        <MenuButton
-          text="Plumbing"
-          source={require('../assets/menu/drop.png')}
-        />
-        <MenuButton
-          text="Building Material"
-          source={require('../assets/menu/layers.png')}
-        />
-      </RowContainer>
-      <RowContainer>
-        <MenuButton
-          text="Electrical"
-          source={require('../assets/menu/lightning.png')}
-        />
-        <MenuButton
-          text="Networking"
-          source={require('../assets/menu/broadcast.png')}
-        />
-      </RowContainer>
-      <RowContainer>
-        <MenuButton
-          text="Tools"
-          source={require('../assets/menu/spanner.png')}
-        />
-        <MenuButton text="Paint" source={require('../assets/menu/brush.png')} />
-        <MenuButton
-          text="Safety Gear"
-          source={require('../assets/menu/alert-triangle.png')}
-        />
-      </RowContainer>
+      <CategoryContainer>
+        <RowContainer>
+          <MenuButton
+            text="Plumbing"
+            source={require('../assets/menu/drop.png')}
+          />
+          <MenuButton
+            text="Building Material"
+            source={require('../assets/menu/layers.png')}
+          />
+        </RowContainer>
+        <RowContainer>
+          <MenuButton
+            text="Electrical"
+            source={require('../assets/menu/lightning.png')}
+          />
+          <MenuButton
+            text="Networking"
+            source={require('../assets/menu/broadcast.png')}
+          />
+        </RowContainer>
+        <RowContainer>
+          <MenuButton
+            text="Tools"
+            source={require('../assets/menu/spanner.png')}
+          />
+          <MenuButton
+            text="Paint"
+            source={require('../assets/menu/brush.png')}
+          />
+          <MenuButton
+            text="Safety Gear"
+            source={require('../assets/menu/alert-triangle.png')}
+          />
+        </RowContainer>
+      </CategoryContainer>
 
       <Header>Trending</Header>
       <Header>Latest</Header>
@@ -79,10 +83,10 @@ const RowContainer = styled.View`
   justify-content: flex-start;
 `;
 
-const ImageContainer = styled.Image`
-  width: 180px;
-  height: 180px;
-  margin: 5px;
+const CategoryContainer = styled.View`
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 `;
 
 const Header = styled.Text`
@@ -91,11 +95,4 @@ const Header = styled.Text`
   font-family: 'Roboto-Light';
   margin: 10px;
   width: 100%;
-`;
-
-const Text = styled.Text`
-  font-size: 14px;
-  color: #000000;
-  font-family: 'Roboto-Regular';
-  margin: 5px;
 `;
