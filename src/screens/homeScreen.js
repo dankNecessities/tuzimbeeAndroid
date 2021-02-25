@@ -67,6 +67,16 @@ export default function HomeScreen({navigation}) {
     },
   ];
 
+  const onPressItem = (item) => {
+    navigation.navigate('ItemScreen', item);
+    console.log(item.title);
+  };
+
+  const onPressCategory = (category) => {
+    // navigation.navigate('ItemScreen');
+    console.log(category.text);
+  };
+
   return (
     <MainContainer>
       <Container
@@ -88,7 +98,13 @@ export default function HomeScreen({navigation}) {
             return (
               <RowContainer>
                 {_.map((item, index) => {
-                  return <MenuButton text={item.text} source={item.source} />;
+                  return (
+                    <MenuButton
+                      text={item.text}
+                      source={item.source}
+                      onPress={() => onPressCategory(item)}
+                    />
+                  );
                 })}
               </RowContainer>
             );
@@ -105,6 +121,7 @@ export default function HomeScreen({navigation}) {
                   title={item.title}
                   price={item.price}
                   source={item.source}
+                  onPress={() => onPressItem(item)}
                 />
               );
             }}
@@ -121,6 +138,7 @@ export default function HomeScreen({navigation}) {
                   title={item.title}
                   price={item.price}
                   source={item.source}
+                  onPress={() => onPressItem(item)}
                 />
               );
             }}
