@@ -11,6 +11,43 @@ export default function SignInScreen({navigation}) {
     navigation.navigate('Login');
   };
 
+  const rows = [
+    [
+      {
+        text: 'Plumbing',
+        source: require('../assets/menu/drop.png'),
+      },
+      {
+        text: 'Building Material',
+        source: require('../assets/menu/layers.png'),
+      },
+    ],
+    [
+      {
+        text: 'Electrical',
+        source: require('../assets/menu/lightning.png'),
+      },
+      {
+        text: 'Networking',
+        source: require('../assets/menu/broadcast.png'),
+      },
+    ],
+    [
+      {
+        text: 'Tools',
+        source: require('../assets/menu/spanner.png'),
+      },
+      {
+        text: 'Paint',
+        source: require('../assets/menu/brush.png'),
+      },
+      {
+        text: 'Safety Gear',
+        source: require('../assets/menu/alert-triangle.png'),
+      },
+    ],
+  ];
+
   return (
     <Container
       // eslint-disable-next-line react-native/no-inline-styles
@@ -27,40 +64,15 @@ export default function SignInScreen({navigation}) {
       />
       <Header>Categories</Header>
       <CategoryContainer>
-        <RowContainer>
-          <MenuButton
-            text="Plumbing"
-            source={require('../assets/menu/drop.png')}
-          />
-          <MenuButton
-            text="Building Material"
-            source={require('../assets/menu/layers.png')}
-          />
-        </RowContainer>
-        <RowContainer>
-          <MenuButton
-            text="Electrical"
-            source={require('../assets/menu/lightning.png')}
-          />
-          <MenuButton
-            text="Networking"
-            source={require('../assets/menu/broadcast.png')}
-          />
-        </RowContainer>
-        <RowContainer>
-          <MenuButton
-            text="Tools"
-            source={require('../assets/menu/spanner.png')}
-          />
-          <MenuButton
-            text="Paint"
-            source={require('../assets/menu/brush.png')}
-          />
-          <MenuButton
-            text="Safety Gear"
-            source={require('../assets/menu/alert-triangle.png')}
-          />
-        </RowContainer>
+        {rows.map((_, i) => {
+          return (
+            <RowContainer>
+              {_.map((item, index) => {
+                return <MenuButton text={item.text} source={item.source} />;
+              })}
+            </RowContainer>
+          );
+        })}
       </CategoryContainer>
 
       <Header>Trending</Header>
