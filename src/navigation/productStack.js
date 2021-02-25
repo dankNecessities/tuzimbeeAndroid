@@ -38,7 +38,6 @@ export default function ProductStack(props) {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-          headerLeft: () => <DashIcon />,
         }}
       />
     </Stack.Navigator>
