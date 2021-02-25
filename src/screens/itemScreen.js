@@ -30,7 +30,7 @@ export default function ItemScreen({route, navigation}) {
         <ItemContainer>
           <ImageContainer source={route.params.source} resizeMode="contain" />
           <Header>{route.params.title}</Header>
-          <SubHeader>Description</SubHeader>
+          <SubHeader>Kenya Adhesive Products</SubHeader>
           <Text>
             A unique blend of adhesive formed with high quality synthetic rubber
             ideally designed for bonding Formica, laminates, PVC floor
