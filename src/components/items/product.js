@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default function Product(props) {
   return (
-    <Container>
+    <Container onPress={props.onPress}>
       <Title>{props.title}</Title>
       <Image source={props.source} resizeMode="contain" />
       <Text>Ushs {props.price.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</Text>
