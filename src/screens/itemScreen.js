@@ -58,7 +58,7 @@ export default function ItemScreen({route, navigation}) {
       <SubHeader>
         Ush {(price * sum).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
       </SubHeader>
-      <ItemButton text="Ltrs" update={setSum} />
+      <ItemButton text={route.params.units} update={setSum} />
       <ButtonContainer>
         <GenericButton
           margin={5}

@@ -61,6 +61,7 @@ export default function HomeScreen({navigation}) {
         ' coverings, fabrics, foam sheets and other domestic and industrial' +
         ' items.',
       source: require('../assets/products/bond.jpg'),
+      units: 'Ltr(s)',
     },
     {
       id: 2,
@@ -75,6 +76,7 @@ export default function HomeScreen({navigation}) {
         'repeatedly during fluctuations nor is it subjected to a massive surge normally ' +
         'experienced when power returns after power cuts.',
       source: require('../assets/products/fg.jpg'),
+      units: 'Pc(s)',
     },
     {
       id: 3,
@@ -85,6 +87,7 @@ export default function HomeScreen({navigation}) {
         'With an objective to fulfill the ever-evolving demands of our' +
         ' clients, we are engaged in offering a wide assortment of Hitachi DV13VSS Hammer Drill.',
       source: require('../assets/products/drill.jpg'),
+      units: 'Pc(s)',
     },
   ];
 
