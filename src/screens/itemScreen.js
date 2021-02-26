@@ -2,15 +2,23 @@ import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import styled from 'styled-components/native';
 import Input from '../components/inputs/input';
+import Separator from '../components/layouts/separator';
+import ItemButton from '../components/buttons/itemButton';
+import GenericButton from '../components/buttons/genericButton';
 
 export default function ItemScreen({route, navigation}) {
   const [searchString, setSearchString] = useState('');
+  const [price, setPrice] = useState(0);
 
   console.log(route.params);
 
   const goToScreen = (screen) => {
     navigation.navigate(screen);
   };
+
+  useEffect(() => {
+    setPrice(Number(route.params.price));
+  }, []);
 
   return (
     <MainContainer>
@@ -39,6 +47,19 @@ export default function ItemScreen({route, navigation}) {
           </Text>
         </ItemContainer>
       </Container>
+      <Separator />
+      <SubHeader>
+        Ush {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+      </SubHeader>
+      <ItemButton text="Ltrs" />
+      <ButtonContainer>
+        <GenericButton
+          margin={5}
+          title="ADD TO CART"
+          bgcolor="#ffff81"
+          color="#000000"
+        />
+      </ButtonContainer>
     </MainContainer>
   );
 }
@@ -50,17 +71,17 @@ const MainContainer = styled.View`
   background-color: #ffffff;
   height: 100%;
   width: 100%;
-  padding: 10px 10px 0px 10px;
 `;
 
 const Container = styled.ScrollView`
   background-color: #ffffff;
   width: 100%;
+  padding: 10px 10px 0px 10px;
 `;
 
 const ImageContainer = styled.Image`
   width: 100%;
-  height: 200px;
+  height: 180px;
 `;
 
 const ItemContainer = styled.View`
@@ -70,22 +91,29 @@ const ItemContainer = styled.View`
   width: 100%;
 `;
 
+const ButtonContainer = styled.View`
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #ffd54f;
+`;
+
 const Header = styled.Text`
-  font-size: 34px;
+  font-size: 30px;
   color: #000000;
   font-family: 'Roboto';
   margin: 5px;
 `;
 
 const SubHeader = styled.Text`
-  font-size: 24px;
+  font-size: 22px;
   color: #000000;
   font-family: 'Roboto-Light';
   margin: 5px;
 `;
 
 const Text = styled.Text`
-  font-size: 18px;
+  font-size: 16px;
   color: #000000;
   font-family: 'Roboto-Thin';
   margin: 5px;
