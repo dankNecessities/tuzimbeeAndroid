@@ -5,16 +5,27 @@ import Input from '../components/inputs/input';
 import Separator from '../components/layouts/separator';
 import ItemButton from '../components/buttons/itemButton';
 import GenericButton from '../components/buttons/genericButton';
+import Storage from '../storage/storage';
 
 export default function ItemScreen({route, navigation}) {
   const [searchString, setSearchString] = useState('');
-  const [sum, setSum] = useState(0);
-  const [price, setPrice] = useState(0);
-
-  console.log(route.params);
+  const [sum, setSum] = useState(1);
+  const [price, setPrice] = useState();
 
   const goToScreen = (screen) => {
     navigation.navigate(screen);
+  };
+
+  const addToCart = () => {
+    // TODO Make sure to get the id for this product!
+    let item = {
+      ...route.params,
+      sum: sum,
+      total: (sum * price).toString,
+    };
+    Storage.setOrderData(item);
+    // TODO Success toast!
+    // Update top right cart icon
   };
 
   useEffect(() => {
@@ -39,13 +50,8 @@ export default function ItemScreen({route, navigation}) {
         <ItemContainer>
           <ImageContainer source={route.params.source} resizeMode="contain" />
           <Header>{route.params.title}</Header>
-          <SubHeader>Kenya Adhesive Products</SubHeader>
-          <Text>
-            A unique blend of adhesive formed with high quality synthetic rubber
-            ideally designed for bonding Formica, laminates, PVC floor
-            coverings, fabrics, foam sheets and other domestic and industrial
-            items.
-          </Text>
+          <SubHeader>{route.params.manufacturer}</SubHeader>
+          <Text>{route.params.description}</Text>
         </ItemContainer>
       </Container>
       <Separator />
@@ -59,6 +65,7 @@ export default function ItemScreen({route, navigation}) {
           title="ADD TO CART"
           bgcolor="#ffff81"
           color="#000000"
+          onPress={addToCart}
         />
       </ButtonContainer>
     </MainContainer>
