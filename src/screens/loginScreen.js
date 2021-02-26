@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import LoginForm from '../components/forms/loginForm';
+import ImageContainer from '../components/layouts/imageContainer';
 import styled from 'styled-components/native';
 
 export default function LoginScreen({navigation}) {
@@ -14,6 +15,8 @@ export default function LoginScreen({navigation}) {
       <ImageContainer
         source={require('../assets/bee.png')}
         resizeMode="contain"
+        size={180}
+        margin={5}
       />
       <LoginForm />
       <Button onPress={() => goToScreen('SignUp')}>
@@ -30,12 +33,6 @@ const Container = styled.View`
   justify-content: center;
   height: 100%;
   width: 100%;
-`;
-
-const ImageContainer = styled.Image`
-  width: 180px;
-  height: 180px;
-  margin: 5px;
 `;
 
 const Button = styled.TouchableOpacity``;

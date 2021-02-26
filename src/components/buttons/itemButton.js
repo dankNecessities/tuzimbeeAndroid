@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import ImageContainer from '../layouts/imageContainer';
 import styled from 'styled-components/native';
 
 export default function ItemButton(props) {
@@ -21,6 +22,8 @@ export default function ItemButton(props) {
         <ImageContainer
           source={require('../../assets/minus.png')}
           resizeMode="contain"
+          size={24}
+          margin={1}
         />
       </ImageButton>
       <Title>
@@ -31,6 +34,8 @@ export default function ItemButton(props) {
         <ImageContainer
           source={require('../../assets/plus.png')}
           resizeMode="contain"
+          size={24}
+          margin={1}
         />
       </ImageButton>
     </Container>
@@ -56,9 +61,4 @@ const Title = styled.Text`
 
 const ImageButton = styled.TouchableOpacity`
   padding: 10px;
-`;
-
-const ImageContainer = styled.Image`
-  height: 24px;
-  width: 24px;
 `;

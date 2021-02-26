@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/homeScreen';
 import ItemScreen from '../screens/itemScreen';
 import IconButton from '../components/buttons/iconButton';
+import ImageContainer from '../components/layouts/imageContainer';
 import styled from 'styled-components';
 
 const Stack = createStackNavigator();
@@ -91,10 +92,4 @@ const Title = styled.Text`
   font-family: 'Roboto-Regular';
   font-size: 18px;
   color: #ffffff;
-`;
-
-const ImageContainer = styled.Image`
-  width: 20px;
-  height: 20px;
-  margin: 15px;
 `;

@@ -1,4 +1,5 @@
 import React from 'react';
+import ImageContainer from '../layouts/imageContainer';
 import styled from 'styled-components/native';
 
 export default function Input(props) {
@@ -22,7 +23,9 @@ export default function Input(props) {
         onChangeText={props.onChangeText}
         font={props.font}
       />
-      {props.image ? <ImageContainer source={props.image} /> : null}
+      {props.image ? (
+        <ImageContainer source={props.image} size={20} margin={10} />
+      ) : null}
     </Container>
   );
 }
@@ -46,10 +49,4 @@ const FormInput = styled.TextInput`
   text-align: left;
   padding: 12px;
   width: 280px;
-`;
-
-const ImageContainer = styled.Image`
-  width: 20px;
-  height: 20px;
-  margin: 10px;
 `;
