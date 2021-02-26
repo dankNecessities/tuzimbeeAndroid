@@ -35,19 +35,6 @@ const Container = styled.View`
   width: 100%;
 `;
 
-const RowContainer = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: ${(props) => props.width || 'auto'};
-`;
-
-const ImageContainer = styled.Image`
-  width: 180px;
-  height: 180px;
-  margin: 5px;
-`;
-
 const Header = styled.Text`
   font-size: 40px;
   color: #000000;
