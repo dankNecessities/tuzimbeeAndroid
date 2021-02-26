@@ -3,8 +3,11 @@ import styled from 'styled-components/native';
 
 export default function GenericButton(props) {
   return (
-    <Container onPress={props.onPress}>
-      <Title>{props.title}</Title>
+    <Container
+      onPress={props.onPress}
+      margin={props.margin}
+      bgcolor={props.bgcolor}>
+      <Title color={props.color}>{props.title}</Title>
     </Container>
   );
 }
@@ -15,7 +18,7 @@ const Container = styled.TouchableOpacity`
   border-radius: 4px;
   padding: 12px;
   width: 180px;
-  margin: 10px;
+  margin: ${(props) => props.margin || 10}px;
   background-color: ${(props) => props.bgcolor || '#333333'};
   elevation: 5;
 `;
