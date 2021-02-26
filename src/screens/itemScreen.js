@@ -8,6 +8,7 @@ import GenericButton from '../components/buttons/genericButton';
 
 export default function ItemScreen({route, navigation}) {
   const [searchString, setSearchString] = useState('');
+  const [sum, setSum] = useState(0);
   const [price, setPrice] = useState(0);
 
   console.log(route.params);
@@ -49,9 +50,9 @@ export default function ItemScreen({route, navigation}) {
       </Container>
       <Separator />
       <SubHeader>
-        Ush {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+        Ush {(price * sum).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
       </SubHeader>
-      <ItemButton text="Ltrs" />
+      <ItemButton text="Ltrs" update={setSum} />
       <ButtonContainer>
         <GenericButton
           margin={5}
