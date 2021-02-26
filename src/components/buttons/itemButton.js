@@ -6,12 +6,14 @@ export default function ItemButton(props) {
 
   const onIncrease = () => {
     setTotal(total + 1);
+    props.update(total + 1);
   };
 
   const onDecrease = () => {
     if (total > 1) {
       setTotal(total - 1);
     }
+    props.update(total - 1);
   };
   return (
     <Container onPress={props.onPress}>
