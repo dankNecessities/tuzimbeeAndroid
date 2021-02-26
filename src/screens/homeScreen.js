@@ -51,19 +51,40 @@ export default function HomeScreen({navigation}) {
 
   const trendingRows = [
     {
+      id: 1,
       title: 'Tough Bond',
       price: '10000',
+      manufacturer: 'Kenya Adhesive Products',
+      description:
+        'A unique blend of adhesive formed with high quality synthetic rubber' +
+        ' ideally designed for bonding Formica, laminates, PVC floor' +
+        ' coverings, fabrics, foam sheets and other domestic and industrial' +
+        ' items.',
       source: require('../assets/products/bond.jpg'),
     },
     {
-      title: 'Tough Bond',
-      price: '10000',
-      source: require('../assets/products/bond.jpg'),
+      id: 2,
+      title: 'Fridge Guard',
+      price: '20000',
+      manufacturer: 'Sollatek',
+      description:
+        'Low power (under-voltage) will certainly damage any refrigeration appliance’s' +
+        ' compressor. The FridgeGuard protects your appliance by disconnecting the power ' +
+        'when it goes below unacceptable level. Additionally, there is a delay when power' +
+        ' returns to normal. This will ensure that the appliance is not switched on-off ' +
+        'repeatedly during fluctuations nor is it subjected to a massive surge normally ' +
+        'experienced when power returns after power cuts.',
+      source: require('../assets/products/fg.jpg'),
     },
     {
-      title: 'Tough Bond',
-      price: '10000',
-      source: require('../assets/products/bond.jpg'),
+      id: 3,
+      title: 'Electric Drill',
+      price: '45000',
+      manufacturer: 'Vishal Power Tools',
+      description:
+        'With an objective to fulfill the ever-evolving demands of our' +
+        ' clients, we are engaged in offering a wide assortment of Hitachi DV13VSS Hammer Drill.',
+      source: require('../assets/products/drill.jpg'),
     },
   ];
 
