@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, {useCallback, useState} from 'react';
+import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/homeScreen';
 import ItemScreen from '../screens/itemScreen';
@@ -10,13 +10,18 @@ import styled from 'styled-components';
 const Stack = createStackNavigator();
 
 export default function ProductStack(props) {
+  const updateTotal = () => {
+    console.log('update total');
+  };
   return (
     <Stack.Navigator initialRouteName="HomeScreen" headerMode="screen">
       <Stack.Screen
         name="HomeScreen"
         component={HomeScreen}
         options={{
-          headerTitle: (props) => <LogoTitle title="Home" {...props} />,
+          headerTitle: () => (
+            <LogoTitle title="Home" {...props} update={updateTotal} />
+          ),
           headerStyle: {
             backgroundColor: '#333333',
           },
@@ -30,8 +35,11 @@ export default function ProductStack(props) {
       <Stack.Screen
         name="ItemScreen"
         component={ItemScreen}
+        initialParams={{update: updateTotal}}
         options={{
-          headerTitle: (props) => <LogoTitle title="Item" {...props} />,
+          headerTitle: () => (
+            <LogoTitle title="Item" {...props} update={updateTotal} />
+          ),
           headerStyle: {
             backgroundColor: '#333333',
           },
@@ -46,6 +54,15 @@ export default function ProductStack(props) {
 }
 
 function LogoTitle(props) {
+  const [cartTotal, setCartTotal] = useState(0);
+
+  // TODO get the total number of items in the cart and update the cart icon
+  useFocusEffect(
+    useCallback(() => {
+      props.update();
+    }, [props.title]),
+  );
+
   return (
     <Container>
       <Title>{props.title}</Title>
@@ -62,6 +79,7 @@ function LogoTitle(props) {
           onPress={() => {
             console.log('Notification Pressed');
           }}>
+          {/* TODO Use updateable cart icon here instead of share */}
           <ImageContainer source={require('../assets/share.png')} />
         </IconButton>
       </Container>
