@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// TODO Add like button for pushing to favorites stack -> appears on favs screen
 export default function Product(props) {
   return (
     <Container onPress={props.onPress}>
