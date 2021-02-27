@@ -32,7 +32,27 @@ export default function ProductStack(props) {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-        headerLeft: () => <DashIcon />,
+        headerLeft: () => {
+          if (route.name === 'HomeScreen') {
+            return (
+              <DashIcon
+                source={require('../assets/menu.png')}
+                onPress={() => {
+                  navigation.toggleDrawer();
+                }}
+              />
+            );
+          } else {
+            return (
+              <DashIcon
+                source={require('../assets/left.png')}
+                onPress={() => {
+                  navigation.goBack();
+                }}
+              />
+            );
+          }
+        },
       })}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="ItemScreen" component={ItemScreen} />
@@ -90,13 +110,9 @@ function LogoTitle(props) {
 }
 
 function DashIcon(props) {
-  const navigation = useNavigation();
   return (
-    <IconButton
-      onPress={() => {
-        navigation.toggleDrawer();
-      }}>
-      <ImageContainer source={require('../assets/menu.png')} />
+    <IconButton onPress={props.onPress}>
+      <ImageContainer source={props.source} />
     </IconButton>
   );
 }
