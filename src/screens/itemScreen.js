@@ -8,11 +8,12 @@ import ItemButton from '../components/buttons/itemButton';
 import GenericButton from '../components/buttons/genericButton';
 import Storage from '../storage/storage';
 
+const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
+
 export default function ItemScreen({route, navigation}) {
   const [searchString, setSearchString] = useState('');
   const [sum, setSum] = useState(1);
   const [price, setPrice] = useState();
-  const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
 
   const goToScreen = (screen) => {
     navigation.navigate(screen);
@@ -25,17 +26,16 @@ export default function ItemScreen({route, navigation}) {
       sum: sum,
       total: (sum * price).toString,
     };
+
     Storage.setOrderData(item).then(() => {
       // Timeout prevents call before value update
-      // setTimeout(() => {
-      //   Storage.getOrderData().then((res) => {
-      //     console.log(res);
-      //   });
-      // }, 1);
+      setTimeout(() => {
+        // Update top right cart icon
+        eventEmitter.emit('event.cartEvent', {});
+      }, 1);
     });
+    // Storage.removeOrderData();
     // TODO Success toast!
-    // Update top right cart icon
-    eventEmitter.emit('event.cartEvent', {});
   };
 
   useEffect(() => {
