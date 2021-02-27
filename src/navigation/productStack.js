@@ -4,6 +4,7 @@ import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/homeScreen';
 import ItemScreen from '../screens/itemScreen';
+import CategoryScreen from '../screens/categoryScreen';
 import IconButton from '../components/buttons/iconButton';
 import ImageContainer from '../components/layouts/imageContainer';
 import styled from 'styled-components';
@@ -23,6 +24,8 @@ export default function ProductStack(props) {
             title = 'Home';
           } else if (route.name === 'ItemScreen') {
             title = 'Item';
+          } else if (route.name === 'CategoryScreen') {
+            title = 'Category';
           }
           return <LogoTitle title={title} {...props} />;
         },
@@ -57,6 +60,7 @@ export default function ProductStack(props) {
       })}>
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="ItemScreen" component={ItemScreen} />
+      <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
     </Stack.Navigator>
   );
 }
