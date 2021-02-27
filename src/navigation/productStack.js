@@ -1,4 +1,5 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useEffect} from 'react';
+import {NativeEventEmitter, NativeModules} from 'react-native';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/homeScreen';
@@ -10,58 +11,59 @@ import styled from 'styled-components';
 const Stack = createStackNavigator();
 
 export default function ProductStack(props) {
-  const updateTotal = () => {
-    console.log('update total');
-  };
   return (
-    <Stack.Navigator initialRouteName="HomeScreen" headerMode="screen">
-      <Stack.Screen
-        name="HomeScreen"
-        component={HomeScreen}
-        options={{
-          headerTitle: () => (
-            <LogoTitle title="Home" {...props} update={updateTotal} />
-          ),
-          headerStyle: {
-            backgroundColor: '#333333',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-          headerLeft: () => <DashIcon />,
-        }}
-      />
-      <Stack.Screen
-        name="ItemScreen"
-        component={ItemScreen}
-        initialParams={{update: updateTotal}}
-        options={{
-          headerTitle: () => (
-            <LogoTitle title="Item" {...props} update={updateTotal} />
-          ),
-          headerStyle: {
-            backgroundColor: '#333333',
-          },
-          headerTintColor: '#fff',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          },
-        }}
-      />
+    <Stack.Navigator
+      initialRouteName="HomeScreen"
+      headerMode="screen"
+      screenOptions={({route, navigation}) => ({
+        headerTitle: () => {
+          let title = '';
+          if (route.name === 'HomeScreen') {
+            title = 'Home';
+          } else if (route.name === 'ItemScreen') {
+            title = 'Item';
+          }
+          return <LogoTitle title={title} {...props} />;
+        },
+        headerStyle: {
+          backgroundColor: '#333333',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+        headerLeft: () => <DashIcon />,
+      })}>
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="ItemScreen" component={ItemScreen} />
     </Stack.Navigator>
   );
 }
 
-function LogoTitle(props) {
-  const [cartTotal, setCartTotal] = useState(0);
+const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
 
+function LogoTitle(props) {
+  const [updated, setUpdated] = useState(false);
   // TODO get the total number of items in the cart and update the cart icon
+  const updateCartTotal = () => {
+    console.log('Update cart total from emitter');
+  };
+
   useFocusEffect(
     useCallback(() => {
-      props.update();
-    }, [props.title]),
+      console.log('Update cart button');
+    }, []),
   );
+
+  useEffect(() => {
+    let eventListener = eventEmitter.addListener('event.cartEvent', () => {
+      updateCartTotal();
+    });
+    return function cleanup() {
+      // FIXME event listener triggered twice
+      eventListener.remove();
+    };
+  }, []);
 
   return (
     <Container>
