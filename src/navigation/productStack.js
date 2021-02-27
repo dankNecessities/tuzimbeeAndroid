@@ -7,6 +7,7 @@ import ItemScreen from '../screens/itemScreen';
 import IconButton from '../components/buttons/iconButton';
 import ImageContainer from '../components/layouts/imageContainer';
 import styled from 'styled-components';
+import Storage from '../storage/storage';
 
 const Stack = createStackNavigator();
 
@@ -63,22 +64,24 @@ export default function ProductStack(props) {
 const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
 
 function LogoTitle(props) {
-  const [updated, setUpdated] = useState(false);
+  const [total, setTotal] = useState(false);
   // TODO get the total number of items in the cart and update the cart icon
   const updateCartTotal = () => {
-    console.log('Update cart total from emitter');
+    console.log('Notification Event');
+    Storage.getOrderData().then((response) => {
+      let result = JSON.parse(response);
+      console.log(result);
+      setTotal(result.length);
+    });
   };
 
-  useFocusEffect(
-    useCallback(() => {
-      console.log('Update cart button');
-    }, []),
-  );
-
   useEffect(() => {
-    let eventListener = eventEmitter.addListener('event.cartEvent', () => {
-      updateCartTotal();
-    });
+    let eventListener = eventEmitter.addListener(
+      'event.notificationEvent',
+      () => {
+        // updateCartTotal();
+      },
+    );
     return function cleanup() {
       // FIXME event listener triggered twice
       eventListener.remove();
@@ -94,15 +97,14 @@ function LogoTitle(props) {
           onPress={() => {
             console.log('Bell Pressed');
           }}>
-          <ImageContainer source={require('../assets/bell.png')} />
-        </IconButton>
-        <IconButton
-          underlayColor="#f2994a"
-          onPress={() => {
-            console.log('Notification Pressed');
-          }}>
-          {/* TODO Use updateable cart icon here instead of share */}
-          <ImageContainer source={require('../assets/share.png')} />
+          {/* TODO Use updateable notifications icon here instead of share */}
+          <CartImage
+            source={require('../assets/bell.png')}
+            resizeMode="contain">
+            <Title size={14} color="yellow">
+              {total === 0 ? '' : total}
+            </Title>
+          </CartImage>
         </IconButton>
       </Container>
     </Container>
@@ -125,7 +127,16 @@ const Container = styled.View`
 `;
 
 const Title = styled.Text`
-  font-family: 'Roboto-Regular';
-  font-size: 18px;
-  color: #ffffff;
+  font-family: 'Roboto-Bold';
+  font-size: ${(props) => props.size || 18}px;
+  color: ${(props) => props.color || '#ffffff'};
+`;
+
+const CartImage = styled.ImageBackground`
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 24px;
+  width: 24px;
+  margin: 10px;
 `;
