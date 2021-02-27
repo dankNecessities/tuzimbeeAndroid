@@ -79,7 +79,6 @@ export default function SearchScreen({route, navigation}) {
     setSearchString(text);
     Utils.cutArray(searchRows, 2, tempArray);
     setResultArray(tempArray);
-    console.log(tempArray);
   };
 
   return (
