@@ -21,7 +21,7 @@ const Container = styled.TouchableOpacity`
   border-radius: 5px;
   padding: 0px;
   width: 150px;
-  margin: 10px;
+  margin: 5px;
 `;
 
 const Title = styled.Text`
