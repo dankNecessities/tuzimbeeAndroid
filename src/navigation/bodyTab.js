@@ -5,6 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IconButton from '../components/buttons/iconButton';
 import styled from 'styled-components/native';
 import ProductStack from './productStack';
+import SearchStack from './searchStack';
 import SearchScreen from '../screens/searchScreen';
 import Storage from '../storage/storage';
 
@@ -108,7 +109,7 @@ export default function BodyTab({route, navigation}) {
       />
       <Tab.Screen
         name="Search"
-        component={SearchScreen}
+        component={SearchStack}
         options={{
           title: 'Search',
         }}
