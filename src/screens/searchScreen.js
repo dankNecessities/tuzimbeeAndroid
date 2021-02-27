@@ -3,6 +3,7 @@ import {StatusBar} from 'react-native';
 import styled from 'styled-components/native';
 import Input from '../components/inputs/input';
 import Product from '../components/items/product';
+import GenericHeading from '../components/headings/genericHeading';
 import Utils from '../utils/utils';
 
 export default function SearchScreen({route, navigation}) {
@@ -96,6 +97,12 @@ export default function SearchScreen({route, navigation}) {
           image={require('../assets/search_home.png')}
           borderColor="#e0e0e0"
         />
+        {searchString.length > 0 ? (
+          <GenericHeading align="center">
+            Results for {searchString}
+          </GenericHeading>
+        ) : null}
+
         <ItemContainer>
           {resultArray.map((_, i) => {
             return (
