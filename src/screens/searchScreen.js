@@ -146,5 +146,5 @@ const RowContainer = styled.View`
   flex-direction: row;
   width: 100%;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-around;
 `;
