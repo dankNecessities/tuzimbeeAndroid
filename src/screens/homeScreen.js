@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import Input from '../components/inputs/input';
 import MenuButton from '../components/buttons/menuButton';
 import Product from '../components/items/product';
+import GenericHeading from '../components/headings/genericHeading';
 
 export default function HomeScreen({navigation}) {
   const [searchString, setSearchString] = useState('');
@@ -96,8 +97,8 @@ export default function HomeScreen({navigation}) {
   };
 
   const onPressCategory = (category) => {
-    // navigation.navigate('ItemScreen');
-    console.log(category.text);
+    navigation.navigate('CategoryScreen', category);
+    // console.log(category.text);
   };
 
   return (
@@ -115,7 +116,7 @@ export default function HomeScreen({navigation}) {
           image={require('../assets/search_home.png')}
           borderColor="#e0e0e0"
         />
-        <Header>Categories</Header>
+        <GenericHeading>Categories</GenericHeading>
         <CategoryContainer>
           {categoryRows.map((_, i) => {
             return (
@@ -133,7 +134,7 @@ export default function HomeScreen({navigation}) {
             );
           })}
         </CategoryContainer>
-        <Header>Trending</Header>
+        <GenericHeading>Trending</GenericHeading>
         <CategoryContainer>
           <ItemScroll
             horizontal={true}
@@ -150,7 +151,7 @@ export default function HomeScreen({navigation}) {
             }}
           />
         </CategoryContainer>
-        <Header>Latest</Header>
+        <GenericHeading>Latest</GenericHeading>
         <CategoryContainer>
           <ItemScroll
             horizontal={true}
@@ -200,13 +201,5 @@ const CategoryContainer = styled.ScrollView`
 
 const ItemScroll = styled.FlatList`
   flex-direction: row;
-  width: 100%;
-`;
-
-const Header = styled.Text`
-  font-size: 30px;
-  color: #000000;
-  font-family: 'Roboto-Light';
-  margin: 10px;
   width: 100%;
 `;
