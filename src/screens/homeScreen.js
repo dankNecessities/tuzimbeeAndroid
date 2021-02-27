@@ -93,7 +93,6 @@ export default function HomeScreen({navigation}) {
 
   const onPressItem = (item) => {
     navigation.navigate('ItemScreen', item);
-    console.log(item.title);
   };
 
   const onPressCategory = (category) => {
