@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
+import {NativeEventEmitter, NativeModules} from 'react-native';
 import styled from 'styled-components/native';
 import Input from '../components/inputs/input';
 import Separator from '../components/layouts/separator';
@@ -11,6 +12,7 @@ export default function ItemScreen({route, navigation}) {
   const [searchString, setSearchString] = useState('');
   const [sum, setSum] = useState(1);
   const [price, setPrice] = useState();
+  const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
 
   const goToScreen = (screen) => {
     navigation.navigate(screen);
@@ -23,9 +25,17 @@ export default function ItemScreen({route, navigation}) {
       sum: sum,
       total: (sum * price).toString,
     };
-    Storage.setOrderData(item);
+    Storage.setOrderData(item).then(() => {
+      // Timeout prevents call before value update
+      // setTimeout(() => {
+      //   Storage.getOrderData().then((res) => {
+      //     console.log(res);
+      //   });
+      // }, 1);
+    });
     // TODO Success toast!
     // Update top right cart icon
+    eventEmitter.emit('event.cartEvent', {});
   };
 
   useEffect(() => {
