@@ -6,7 +6,7 @@ import IconButton from '../components/buttons/iconButton';
 import styled from 'styled-components/native';
 import ProductStack from './productStack';
 import SearchStack from './searchStack';
-import SearchScreen from '../screens/searchScreen';
+import CartStack from './cartStack';
 import Storage from '../storage/storage';
 
 const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
@@ -116,7 +116,7 @@ export default function BodyTab({route, navigation}) {
       />
       <Tab.Screen
         name="Cart"
-        component={ProductStack}
+        component={CartStack}
         options={{
           title: 'Cart',
         }}
@@ -141,7 +141,6 @@ export default function BodyTab({route, navigation}) {
 
 function TabBarIcon(props) {
   const [total, setTotal] = useState(false);
-  // TODO get the total number of items in the cart and update the cart icon
 
   const updateCartTotal = () => {
     Storage.getOrderData().then((response) => {
