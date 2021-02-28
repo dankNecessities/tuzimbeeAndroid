@@ -49,14 +49,14 @@ const Storage = {
       console.log(e);
     }
   },
-  deleteOrderItem: (item_id) => {
+  deleteOrderItem: async (item_id) => {
     // Remove specified item from the stack
     Storage.getOrderData().then((result) => {
       let orderData = JSON.parse(result);
       orderData.forEach((item, index) => {
         if (item.id === item_id) {
           orderData.splice(index, 1);
-          AsyncStorage.setItem('order', JSON.stringify(orderData));
+          return AsyncStorage.setItem('order', JSON.stringify(orderData));
         }
       });
     });
