@@ -17,12 +17,12 @@ export default function ItemButton(props) {
     }
   };
   return (
-    <Container onPress={props.onPress}>
+    <Container onPress={props.onPress} width={props.width}>
       <ImageButton onPress={onDecrease}>
         <ImageContainer
           source={require('../../assets/minus.png')}
           resizeMode="contain"
-          size={24}
+          size={props.size ? props.size : 24}
           margin={1}
         />
       </ImageButton>
@@ -34,7 +34,7 @@ export default function ItemButton(props) {
         <ImageContainer
           source={require('../../assets/plus.png')}
           resizeMode="contain"
-          size={24}
+          size={props.size ? props.size : 24}
           margin={1}
         />
       </ImageButton>
@@ -47,7 +47,7 @@ const Container = styled.View`
   align-items: center;
   justify-content: space-between;
   padding: 0px;
-  width: 180px;
+  width: ${(props) => props.width || 180}px;
   margin: 5px;
   background-color: transparent;
 `;
