@@ -65,7 +65,7 @@ const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
 
 function LogoTitle(props) {
   const [total, setTotal] = useState(false);
-  // TODO get the total number of items in the cart and update the cart icon
+  //   TODO Export this component
   const updateCartTotal = () => {
     console.log('Notification Event');
     Storage.getOrderData().then((response) => {
@@ -83,7 +83,6 @@ function LogoTitle(props) {
       },
     );
     return function cleanup() {
-      // FIXME event listener triggered twice
       eventListener.remove();
     };
   }, []);
