@@ -14,7 +14,7 @@ export default function CategoryScreen({route, navigation}) {
     navigation.navigate(screen);
   };
 
-  //  TODO Search within the category screen should be specific to that category
+  //  TODO Search within the category screen should be filtered by that category
 
   const searchRows = [
     {
