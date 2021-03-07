@@ -67,15 +67,17 @@ export default function CartScreen({route, navigation}) {
           );
         })}
       </Container>
-      <ButtonContainer>
-        <GenericButton
-          margin={5}
-          title="CHECK OUT"
-          bgcolor="#ffff81"
-          color="#000000"
-          onPress={() => navigation.navigate('CheckoutScreen')}
-        />
-      </ButtonContainer>
+      {cartData.length > 0 ? (
+        <ButtonContainer>
+          <GenericButton
+            margin={5}
+            title="CHECK OUT"
+            bgcolor="#ffff81"
+            color="#000000"
+            onPress={() => navigation.navigate('CheckoutScreen')}
+          />
+        </ButtonContainer>
+      ) : null}
     </MainContainer>
   );
 }
