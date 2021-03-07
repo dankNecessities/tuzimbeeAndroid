@@ -11,10 +11,6 @@ const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
 export default function CartScreen({route, navigation}) {
   const [cartData, setCartData] = useState([]);
 
-  const goToScreen = (screen) => {
-    navigation.navigate(screen);
-  };
-
   const getCartData = () => {
     Storage.getOrderData().then((response) => {
       let result = JSON.parse(response);
@@ -77,7 +73,7 @@ export default function CartScreen({route, navigation}) {
           title="CHECK OUT"
           bgcolor="#ffff81"
           color="#000000"
-          onPress={() => navigation.navigate('HomeScreen')}
+          onPress={() => navigation.navigate('CheckoutScreen')}
         />
       </ButtonContainer>
     </MainContainer>
