@@ -6,6 +6,7 @@ import HomeScreen from '../screens/homeScreen';
 import ItemScreen from '../screens/itemScreen';
 import CartScreen from '../screens/cartScreen';
 import CategoryScreen from '../screens/categoryScreen';
+import CheckoutScreen from '../screens/checkoutScreen';
 import IconButton from '../components/buttons/iconButton';
 import ImageContainer from '../components/layouts/imageContainer';
 import styled from 'styled-components';
@@ -27,6 +28,8 @@ export default function CartStack(props) {
             title = 'Item';
           } else if (route.name === 'CategoryScreen') {
             title = 'Category';
+          } else if (route.name === 'CheckoutScreen') {
+            title = 'Checkout';
           }
           return <LogoTitle title={title} {...props} />;
         },
@@ -62,6 +65,7 @@ export default function CartStack(props) {
       <Stack.Screen name="CartScreen" component={CartScreen} />
       <Stack.Screen name="ItemScreen" component={ItemScreen} />
       <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
+      <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} />
     </Stack.Navigator>
   );
 }
