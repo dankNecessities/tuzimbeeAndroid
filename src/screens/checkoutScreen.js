@@ -1,21 +1,24 @@
-import React, {useEffect, useState, useCallback} from 'react';
-import {StatusBar, NativeEventEmitter, NativeModules} from 'react-native';
-import {useFocusEffect} from '@react-navigation/native';
+import React, {useEffect, useState} from 'react';
+import {StatusBar} from 'react-native';
+import {NativeEventEmitter, NativeModules} from 'react-native';
 import styled from 'styled-components/native';
+import Input from '../components/inputs/input';
+import Separator from '../components/layouts/separator';
+import ItemButton from '../components/buttons/itemButton';
 import CartItem from '../components/items/cartItem';
 import GenericButton from '../components/buttons/genericButton';
 import Storage from '../storage/storage';
 
 const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
 
-export default function CheckoutScreen({route, navigation}) {
-  const [cartData, setCartData] = useState([]);
+export default function ItemScreen({route, navigation}) {
+  const [items, setItems] = useState([]);
 
   const getCartData = () => {
     Storage.getOrderData().then((response) => {
       let result = JSON.parse(response);
       setTimeout(() => {
-        setCartData(result);
+        setItems(result);
       }, 10);
     });
   };
@@ -36,26 +39,52 @@ export default function CheckoutScreen({route, navigation}) {
     });
   };
 
-  useFocusEffect(
-    useCallback(() => {
-      getCartData();
-    }, []),
-  );
-
   useEffect(() => {
+    //    Get items from cart
     getCartData();
   }, []);
 
   return (
     <MainContainer>
-      <StatusBar backgroundColor="#333333" />
+      <Container
+        // eslint-disable-next-line react-native/no-inline-styles
+        contentContainerStyle={{
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+        }}>
+        <StatusBar backgroundColor="#333333" />
+        <Input
+          placeholder="Search"
+          image={require('../assets/search_home.png')}
+          borderColor="#e0e0e0"
+        />
+        <Container>
+          {items.map((_, i) => {
+            return (
+              <CartItem
+                id={_.id}
+                title={_.title}
+                source={_.source}
+                sum={_.sum}
+                manufacturer={_.manufacturer}
+                price={_.price}
+                remove={() => removeCartItem(_.id)}
+                update={(sum) => {
+                  updateCartData(_, sum);
+                }}
+              />
+            );
+          })}
+        </Container>
+      </Container>
+      <Separator />
       <ButtonContainer>
         <GenericButton
           margin={5}
-          title="CONFIRM"
+          title="BUY"
           bgcolor="#ffff81"
           color="#000000"
-          onPress={() => navigation.navigate('HomeScreen')}
+          onPress={() => {}}
         />
       </ButtonContainer>
     </MainContainer>
