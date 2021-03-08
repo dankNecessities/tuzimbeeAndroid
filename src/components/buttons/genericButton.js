@@ -6,6 +6,7 @@ export default function GenericButton(props) {
     <Container
       onPress={props.onPress}
       margin={props.margin}
+      width={props.width}
       bgcolor={props.bgcolor}>
       <Title color={props.color}>{props.title}</Title>
     </Container>
@@ -17,7 +18,7 @@ const Container = styled.TouchableOpacity`
   justify-content: center;
   border-radius: 4px;
   padding: 12px;
-  width: 180px;
+  width: ${(props) => props.width || 180}px;
   margin: ${(props) => props.margin || 10}px;
   background-color: ${(props) => props.bgcolor || '#333333'};
   elevation: 5;
