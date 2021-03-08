@@ -97,6 +97,18 @@ export default function ItemScreen({route, navigation}) {
         editable={contactEditable}
         onPress={() => setContactEditable(!contactEditable)}
       />
+      <BillContainer>
+        <Label>SUBTOTAL</Label>
+        <ItemText>Ush 20,000</ItemText>
+      </BillContainer>
+      <BillContainer>
+        <Label>DISCOUNT</Label>
+        <ItemText>5 %</ItemText>
+      </BillContainer>
+      <BillContainer>
+        <ItemText>TOTAL</ItemText>
+        <ItemText>Ush 19,500</ItemText>
+      </BillContainer>
       <ButtonContainer>
         <GenericButton
           margin={5}
@@ -122,19 +134,23 @@ const MainContainer = styled.View`
 const Container = styled.ScrollView`
   background-color: #ffffff;
   width: 100%;
-  /* padding: 10px 10px 0px 10px; */
 `;
 
-const ImageContainer = styled.Image`
-  width: 100%;
-  height: 180px;
+const Label = styled.Text`
+  font-size: 12px;
+  color: #9e9e9e;
+  font-family: 'Roboto-Bold';
 `;
 
-const ItemContainer = styled.View`
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+const BillContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 `;
 
 const ButtonContainer = styled.View`
@@ -144,11 +160,11 @@ const ButtonContainer = styled.View`
   background-color: #ffd54f;
 `;
 
-const Header = styled.Text`
-  font-size: 30px;
-  color: #000000;
-  font-family: 'Roboto';
-  margin: 5px;
+const ItemText = styled.Text`
+  font-size: 14px;
+  color: #212121;
+  text-align: left;
+  padding: 0px;
 `;
 
 const SubHeader = styled.Text`
