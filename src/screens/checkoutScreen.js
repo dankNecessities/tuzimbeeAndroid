@@ -2,9 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
 import {NativeEventEmitter, NativeModules} from 'react-native';
 import styled from 'styled-components/native';
-import Input from '../components/inputs/input';
 import Separator from '../components/layouts/separator';
-import ItemButton from '../components/buttons/itemButton';
 import CartItem from '../components/items/cartItem';
 import GenericButton from '../components/buttons/genericButton';
 import Storage from '../storage/storage';
@@ -44,6 +42,15 @@ export default function ItemScreen({route, navigation}) {
     });
   };
 
+  const calculateTotalBill = () => {
+    //   TODO get sum of all prices
+    // TODO Use disount to get the final prices
+  };
+
+  const updateBillData = () => {
+    //  TODO SAVE to asyncstorage
+  };
+
   useEffect(() => {
     //    Get items from cart
     getCartData();
@@ -58,11 +65,6 @@ export default function ItemScreen({route, navigation}) {
           justifyContent: 'flex-start',
         }}>
         <StatusBar backgroundColor="#333333" />
-        <Input
-          placeholder="Search"
-          image={require('../assets/search_home.png')}
-          borderColor="#e0e0e0"
-        />
         <Container>
           {items.map((_, i) => {
             return (
@@ -161,22 +163,8 @@ const ButtonContainer = styled.View`
 `;
 
 const ItemText = styled.Text`
-  font-size: 14px;
+  font-size: 16px;
   color: #212121;
   text-align: left;
   padding: 0px;
-`;
-
-const SubHeader = styled.Text`
-  font-size: 22px;
-  color: #000000;
-  font-family: 'Roboto-Light';
-  margin: 5px;
-`;
-
-const Text = styled.Text`
-  font-size: 16px;
-  color: #000000;
-  font-family: 'Roboto-Thin';
-  margin: 5px;
 `;
