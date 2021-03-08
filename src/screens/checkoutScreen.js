@@ -8,11 +8,16 @@ import ItemButton from '../components/buttons/itemButton';
 import CartItem from '../components/items/cartItem';
 import GenericButton from '../components/buttons/genericButton';
 import Storage from '../storage/storage';
+import LabelledInput from '../components/inputs/labelledInput';
 
 const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
 
 export default function ItemScreen({route, navigation}) {
   const [items, setItems] = useState([]);
+  const [address, setAddress] = useState('');
+  const [addressEditable, setAddressEditable] = useState(false);
+  const [contact, setContact] = useState('');
+  const [contactEditable, setContactEditable] = useState(false);
 
   const getCartData = () => {
     Storage.getOrderData().then((response) => {
@@ -78,6 +83,20 @@ export default function ItemScreen({route, navigation}) {
         </Container>
       </Container>
       <Separator />
+      <LabelledInput
+        label="ADDRESS"
+        onChangeText={(text) => setAddress(text)}
+        source={require('../assets/pen.png')}
+        editable={addressEditable}
+        onPress={() => setAddressEditable(!addressEditable)}
+      />
+      <LabelledInput
+        label="CONTACT"
+        onChangeText={(text) => setContact(text)}
+        source={require('../assets/pen.png')}
+        editable={contactEditable}
+        onPress={() => setContactEditable(!contactEditable)}
+      />
       <ButtonContainer>
         <GenericButton
           margin={5}
