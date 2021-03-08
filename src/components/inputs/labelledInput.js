@@ -6,7 +6,6 @@ export default function LabelledInput(props) {
   const inputRef = useRef();
 
   useEffect(() => {
-    console.log(inputRef.current);
     inputRef.current.focus();
   }, [props.editable]);
 
@@ -43,7 +42,7 @@ const Container = styled.View`
   align-items: flex-start;
   border-bottom-width: 1px;
   border-bottom-color: ${(props) => props.borderColor || '#9e9e9e'};
-  margin: 5px;
+  margin: 10px;
 `;
 
 const Label = styled.Text`

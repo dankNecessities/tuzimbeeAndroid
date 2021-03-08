@@ -11,6 +11,7 @@ import IconButton from '../components/buttons/iconButton';
 import ImageContainer from '../components/layouts/imageContainer';
 import styled from 'styled-components';
 import Storage from '../storage/storage';
+import SuccessScreen from '../screens/successScreen';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,8 @@ export default function CartStack(props) {
             title = 'Category';
           } else if (route.name === 'CheckoutScreen') {
             title = 'Checkout';
+          } else if (route.name === 'SuccessScreen') {
+            title = 'Success';
           }
           return <LogoTitle title={title} {...props} />;
         },
@@ -66,6 +69,7 @@ export default function CartStack(props) {
       <Stack.Screen name="ItemScreen" component={ItemScreen} />
       <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
       <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} />
+      <Stack.Screen name="SuccessScreen" component={SuccessScreen} />
     </Stack.Navigator>
   );
 }
