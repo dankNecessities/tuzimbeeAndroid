@@ -91,6 +91,7 @@ export default function ItemScreen({route, navigation}) {
         source={require('../assets/pen.png')}
         editable={addressEditable}
         onPress={() => setAddressEditable(!addressEditable)}
+        margin={15}
       />
       <LabelledInput
         label="CONTACT"
@@ -117,7 +118,9 @@ export default function ItemScreen({route, navigation}) {
           title="BUY"
           bgcolor="#ffff81"
           color="#000000"
-          onPress={() => {}}
+          onPress={() => {
+            navigation.navigate('SuccessScreen');
+          }}
         />
       </ButtonContainer>
     </MainContainer>
@@ -151,8 +154,8 @@ const BillContainer = styled.View`
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
 `;
 
 const ButtonContainer = styled.View`
