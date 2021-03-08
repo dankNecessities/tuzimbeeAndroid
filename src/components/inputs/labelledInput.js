@@ -11,13 +11,11 @@ export default function LabelledInput(props) {
   }, [props.editable]);
 
   return (
-    <Container borderColor={props.borderColor}>
+    <Container borderColor={props.borderColor} margin={props.margin}>
       <Label>{props.label}</Label>
       <InputContainer width={props.width}>
         <FormInput
           ref={inputRef}
-          selection={{start: 1, end: 1}}
-          margin={props.margin}
           hidden={props.hidden}
           bgcolor={props.bgcolor}
           defaultValue={props.defaultValue}
@@ -49,14 +47,14 @@ const Container = styled.View`
 `;
 
 const Label = styled.Text`
-  font-size: 14px;
+  font-size: 12px;
   color: #9e9e9e;
   font-family: 'Roboto-Bold';
 `;
 
 const FormInput = styled.TextInput`
   background-color: ${(props) => props.bgcolor || 'transparent'};
-  font-size: ${(props) => props.font || 18}px;
+  font-size: ${(props) => props.font || 14}px;
   color: #212121;
   text-align: left;
   padding: 0px;
