@@ -44,7 +44,7 @@ export default function CartScreen({route, navigation}) {
 
   useEffect(() => {
     getCartData();
-  }, []);
+  }, [navigation]);
 
   return (
     <MainContainer>
