@@ -8,7 +8,7 @@ import ProductStack from './productStack';
 import SearchStack from './searchStack';
 import CartStack from './cartStack';
 import Storage from '../storage/storage';
-import FavoritesScreen from '../screens/favoritesScreen';
+import FavoritesStack from './favoritesStack';
 
 const eventEmitter = new NativeEventEmitter(NativeModules.ToastExample);
 
@@ -124,7 +124,7 @@ export default function BodyTab({route, navigation}) {
       />
       <Tab.Screen
         name="Favorites"
-        component={FavoritesScreen}
+        component={FavoritesStack}
         options={{
           title: 'Favorites',
         }}
