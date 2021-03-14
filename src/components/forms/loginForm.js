@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {ToastAndroid} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import styled from 'styled-components/native';
 import Input from '../inputs/input';
@@ -28,14 +29,24 @@ export default function LoginForm(props) {
     //   .catch((error) => {
     //     console.log(error);
     //   });
-    API.authenticate(username, password)
+
+    API.authenticate('sam.olwe@gmail.com', 'P@ssw0rd')
       .then((result) => {
         console.log(result);
-        Storage.setAuthToken(result.access_token);
-        goToScreen('Dashboard');
+        if (result.access_token) {
+          Storage.setAuthToken(result.access_token);
+          goToScreen('Dashboard');
+        } else {
+          throw new Error(result);
+        }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        ToastAndroid.show(
+          'Invalid username or password',
+          ToastAndroid.SHORT,
+          ToastAndroid.CENTER,
+        );
       });
   };
 
