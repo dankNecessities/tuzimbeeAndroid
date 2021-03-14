@@ -4,20 +4,55 @@ import styled from 'styled-components/native';
 import Input from '../inputs/input';
 import CheckBox from '@react-native-community/checkbox';
 import GenericButton from '../buttons/genericButton';
+import API from '../../api/api';
+import Storage from '../../storage/storage';
 
+// TODO Get loading icon for all API Calls
 export default function LoginForm(props) {
   const [remember, setRemember] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
   const goToScreen = (screen) => {
     navigation.navigate(screen);
   };
 
+  const login = () => {
+    // TODO Connect API after sorting the identity server URL issues
+    // authorize(API.config)
+    //   .then((result) => {
+    //     console.log(result);
+    //     goToScreen('Dashboard');
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    API.authenticate(username, password)
+      .then((result) => {
+        console.log(result);
+        Storage.setAuthToken(result.access_token);
+        goToScreen('Dashboard');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <Container>
       <Header>Sign In</Header>
-      <Input placeholder="Username" width={300} />
-      <Input placeholder="Password" width={300} secure={true} />
+      <Input
+        placeholder="Username"
+        width={300}
+        onChangeText={(text) => setUsername(text)}
+      />
+      <Input
+        placeholder="Password"
+        width={300}
+        secure={true}
+        onChangeText={(text) => setPassword(text)}
+      />
       <RowContainer width={300}>
         <RowContainer>
           <CheckBox
@@ -34,7 +69,7 @@ export default function LoginForm(props) {
           <Text>Forgot Password?</Text>
         </Button>
       </RowContainer>
-      <GenericButton title="SIGN IN" onPress={() => goToScreen('Dashboard')} />
+      <GenericButton title="SIGN IN" onPress={login} />
     </Container>
   );
 }
