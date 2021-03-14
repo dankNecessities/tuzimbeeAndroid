@@ -36,8 +36,8 @@ const API = {
   authenticate: (username, password) => {
     var formData = new FormData();
     formData.append('grant_type', 'password');
-    formData.append('username', 'sam.olwe@gmail.com');
-    formData.append('password', 'P@ssw0rd');
+    formData.append('username', username);
+    formData.append('password', password);
     formData.append('client_id', 'tuzimbe_web_client');
     formData.append('client_secret', 'jg_adrt12');
     formData.append('scope', 'openid api.tuzimbee');
