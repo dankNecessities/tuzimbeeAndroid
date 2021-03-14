@@ -1,26 +1,14 @@
-// const API = {
-//   config: {
-//     issuer: 'https://tuzimbee.com/identity',
-//     clientId: 'tuzimbe_web_client',
-//     redirectUrl: 'io.identityserver.demo:/oauthredirect',
-//     scopes: ['openid', 'profile', 'api.simplcommerce', 'offline_access'],
-//     serviceConfiguration: {
-//       authorizationEndpoint: 'https://tuzimbee.com/connect/authorize',
-//       tokenEndpoint: 'https://tuzimbee.com/connect/token',
-//       revocationEndpoint: 'https://tuzimbee.com/connect/revocation',
-//     },
-//   },
-// };
 import Storage from '../storage/storage';
 
 const API = {
-  get: async (url = '', token = '', headers = '') => {
-    return Storage.getAuthToken().then((result) => {
-      let token = JSON.parse(result);
+  BaseURL: 'https://tuzimbee.com/',
+  get: async (url = '', headers = {}) => {
+    return Storage.getAuthToken().then((token) => {
       return fetch(url, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
+          ...headers,
         },
       }).then((response) => {
         return response.json().then((resultData) => {
@@ -29,21 +17,35 @@ const API = {
       });
     });
   },
-  post: async (url = '', data = {}, headers = '') => {
-    return Storage.getAuthToken().then((result) => {
-      let token = JSON.parse(result);
+  post: async (url = '', data = {}, headers = {}, isJSON = true) => {
+    return Storage.getAuthToken().then((token) => {
       return fetch(url, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
+          ...headers,
         },
-        body: JSON.stringify(data),
+        body: isJSON ? JSON.stringify(data) : data,
       }).then((response) => {
         return response.json().then((resultData) => {
           return resultData;
         });
       });
     });
+  },
+  authenticate: (username, password) => {
+    var formData = new FormData();
+    formData.append('grant_type', 'password');
+    formData.append('username', 'sam.olwe@gmail.com');
+    formData.append('password', 'P@ssw0rd');
+    formData.append('client_id', 'tuzimbe_web_client');
+    formData.append('client_secret', 'jg_adrt12');
+    formData.append('scope', 'openid api.tuzimbee');
+
+    return API.post(API.BaseURL + 'connect/token', formData, {}, false);
+  },
+  getProduct: (id) => {
+    return API.get(API.BaseURL + 'api/products/' + id);
   },
 };
 
