@@ -121,7 +121,7 @@ const RowContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: ${(props) => props.width || 'auto'};
+  width: ${(props) => `${props.width}px` || 'auto'};
 `;
 
 const Header = styled.Text`
