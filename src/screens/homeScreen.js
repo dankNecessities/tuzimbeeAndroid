@@ -5,50 +5,95 @@ import Input from '../components/inputs/input';
 import MenuButton from '../components/buttons/menuButton';
 import Product from '../components/items/product';
 import GenericHeading from '../components/headings/genericHeading';
+import Utils from '../utils/utils';
+import API from '../api/api';
+import FloatingLoader from '../components/loaders/floatingLoader';
 
 export default function HomeScreen({navigation}) {
   const [searchString, setSearchString] = useState('');
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const goToScreen = (screen) => {
     navigation.navigate(screen);
   };
 
-  const categoryRows = [
-    [
-      {
-        text: 'Plumbing',
-        source: require('../assets/menu/drop.png'),
-      },
-      {
-        text: 'Building Material',
-        source: require('../assets/menu/layers.png'),
-      },
-    ],
-    [
-      {
-        text: 'Electrical',
-        source: require('../assets/menu/lightning.png'),
-      },
-      {
-        text: 'Networking',
-        source: require('../assets/menu/broadcast.png'),
-      },
-    ],
-    [
-      {
-        text: 'Tools',
-        source: require('../assets/menu/spanner.png'),
-      },
-      {
-        text: 'Paint',
-        source: require('../assets/menu/brush.png'),
-      },
-      {
-        text: 'Safety Gear',
-        source: require('../assets/menu/alert-triangle.png'),
-      },
-    ],
+  let x = [
+    {
+      id: 2,
+      name: 'Building Material',
+      displayOrder: 0,
+      includeInMenu: true,
+      isPublished: true,
+      parentId: null,
+    },
+    {
+      id: 8,
+      name: 'Building Material >> Cement',
+      displayOrder: 0,
+      includeInMenu: true,
+      isPublished: true,
+      parentId: 2,
+    },
+    {
+      id: 3,
+      name: 'Electrical',
+      displayOrder: 0,
+      includeInMenu: true,
+      isPublished: true,
+      parentId: null,
+    },
+    {
+      id: 5,
+      name: 'Networking',
+      displayOrder: 0,
+      includeInMenu: true,
+      isPublished: true,
+      parentId: null,
+    },
+    {
+      id: 7,
+      name: 'Paint',
+      displayOrder: 0,
+      includeInMenu: true,
+      isPublished: true,
+      parentId: null,
+    },
+    {
+      id: 1,
+      name: 'Plumbing',
+      displayOrder: 0,
+      includeInMenu: true,
+      isPublished: true,
+      parentId: null,
+    },
+    {
+      id: 4,
+      name: 'Safety Gear',
+      displayOrder: 0,
+      includeInMenu: false,
+      isPublished: true,
+      parentId: null,
+    },
+    {
+      id: 6,
+      name: 'Tools',
+      displayOrder: 0,
+      includeInMenu: true,
+      isPublished: true,
+      parentId: null,
+    },
   ];
+
+  const images = {
+    Plumbing: require('../assets/menu/drop.png'),
+    'Building Material': require('../assets/menu/layers.png'),
+    Electrical: require('../assets/menu/lightning.png'),
+    Networking: require('../assets/menu/broadcast.png'),
+    Tools: require('../assets/menu/spanner.png'),
+    Paint: require('../assets/menu/brush.png'),
+    'Safety Gear': require('../assets/menu/alert-triangle.png'),
+  };
 
   const trendingRows = [
     {
@@ -101,8 +146,16 @@ export default function HomeScreen({navigation}) {
     // console.log(category.text);
   };
 
+  useEffect(() => {
+    API.getCategories().then((result) => {
+      console.log(result);
+      // Utils.cutArray(result, )
+    });
+  }, []);
+
   return (
     <MainContainer>
+      {loading ? <FloatingLoader /> : null}
       <Container
         // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{
@@ -119,7 +172,18 @@ export default function HomeScreen({navigation}) {
         />
         <GenericHeading>Categories</GenericHeading>
         <CategoryContainer>
-          {categoryRows.map((_, i) => {
+          <RowContainer>
+            {x.map((_, i) => {
+              return (
+                <MenuButton
+                  text={_.name}
+                  source={images[_.name]}
+                  onPress={() => onPressCategory(_)}
+                />
+              );
+            })}
+          </RowContainer>
+          {/* {categoryRows.map((_, i) => {
             return (
               <RowContainer>
                 {_.map((item, index) => {
@@ -133,7 +197,7 @@ export default function HomeScreen({navigation}) {
                 })}
               </RowContainer>
             );
-          })}
+          })} */}
         </CategoryContainer>
         <GenericHeading>Trending</GenericHeading>
         <CategoryContainer>
@@ -194,6 +258,7 @@ const RowContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
 `;
 
 const CategoryContainer = styled.ScrollView`
