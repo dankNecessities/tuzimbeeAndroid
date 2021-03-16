@@ -169,6 +169,7 @@ export default function HomeScreen({navigation}) {
           image={require('../assets/search_home.png')}
           borderColor="#e0e0e0"
           color="#333333"
+          placeholderTextColor="#e0e0e0"
         />
         <GenericHeading>Categories</GenericHeading>
         <CategoryContainer>
@@ -183,21 +184,6 @@ export default function HomeScreen({navigation}) {
               );
             })}
           </RowContainer>
-          {/* {categoryRows.map((_, i) => {
-            return (
-              <RowContainer>
-                {_.map((item, index) => {
-                  return (
-                    <MenuButton
-                      text={item.text}
-                      source={item.source}
-                      onPress={() => onPressCategory(item)}
-                    />
-                  );
-                })}
-              </RowContainer>
-            );
-          })} */}
         </CategoryContainer>
         <GenericHeading>Trending</GenericHeading>
         <CategoryContainer>
