@@ -96,7 +96,7 @@ export default function LoginForm(props) {
             onValueChange={() =>
               remember ? setRemember(false) : setRemember(true)
             }
-            tintColors={{true: '#333333', false: '#333333'}}
+            tintColors={{true: '#ffd54f', false: '#ffd54f'}}
           />
           <Text>Remember me</Text>
         </RowContainer>
