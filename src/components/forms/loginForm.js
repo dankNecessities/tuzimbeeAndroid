@@ -7,12 +7,14 @@ import CheckBox from '@react-native-community/checkbox';
 import GenericButton from '../buttons/genericButton';
 import API from '../../api/api';
 import Storage from '../../storage/storage';
+import FloatingLoader from '../loaders/floatingLoader';
 
 // TODO Get loading icon for all API Calls
 export default function LoginForm(props) {
   const [remember, setRemember] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
   const goToScreen = (screen) => {
@@ -38,6 +40,7 @@ export default function LoginForm(props) {
   };
 
   const login = () => {
+    setLoading(true);
     API.authenticate(username, password)
       .then((result) => {
         console.log(result);
@@ -52,6 +55,7 @@ export default function LoginForm(props) {
             ToastAndroid.CENTER,
           );
         }
+        setLoading(false);
       })
       .catch((error) => {
         ToastAndroid.show(
@@ -59,6 +63,7 @@ export default function LoginForm(props) {
           ToastAndroid.SHORT,
           ToastAndroid.CENTER,
         );
+        setLoading(false);
       });
   };
 
@@ -93,6 +98,7 @@ export default function LoginForm(props) {
         </Button>
       </RowContainer>
       <GenericButton title="SIGN IN" onPress={validateInputs} />
+      {loading ? <FloatingLoader /> : null}
     </Container>
   );
 }
