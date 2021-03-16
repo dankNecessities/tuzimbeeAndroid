@@ -12,6 +12,9 @@ export default function Input(props) {
       <FormInput
         defaultValue={props.defaultValue}
         placeholder={props.placeholder}
+        placeholderTextColor={
+          props.placeholderTextColor ? props.placeholderTextColor : '#d9a06e'
+        }
         secureTextEntry={props.secure}
         autoCompleteType={props.autoCompleteType}
         keyboardType={props.keyboardType}
