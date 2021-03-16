@@ -19,31 +19,42 @@ export default function LoginForm(props) {
     navigation.navigate(screen);
   };
 
-  const login = () => {
-    // TODO Connect API after sorting the identity server URL issues
-    // authorize(API.config)
-    //   .then((result) => {
-    //     console.log(result);
-    //     goToScreen('Dashboard');
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+  const validateInputs = () => {
+    if (username.length <= 0) {
+      ToastAndroid.show(
+        'Please enter a username',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
+    } else if (password.length <= 0) {
+      ToastAndroid.show(
+        'Please enter a password',
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
+    } else {
+      login();
+    }
+  };
 
-    API.authenticate('sam.olwe@gmail.com', 'P@ssw0rd')
+  const login = () => {
+    API.authenticate(username, password)
       .then((result) => {
         console.log(result);
         if (result.access_token) {
           Storage.setAuthToken(result.access_token);
           goToScreen('Dashboard');
         } else {
-          throw new Error(result);
+          ToastAndroid.show(
+            'Invalid username or password',
+            ToastAndroid.SHORT,
+            ToastAndroid.CENTER,
+          );
         }
       })
       .catch((error) => {
-        // console.log(error);
         ToastAndroid.show(
-          'Invalid username or password',
+          'Netowrk request failed',
           ToastAndroid.SHORT,
           ToastAndroid.CENTER,
         );
@@ -80,7 +91,7 @@ export default function LoginForm(props) {
           <Text>Forgot Password?</Text>
         </Button>
       </RowContainer>
-      <GenericButton title="SIGN IN" onPress={login} />
+      <GenericButton title="SIGN IN" onPress={validateInputs} />
     </Container>
   );
 }
