@@ -12,6 +12,7 @@ import styled from 'styled-components/native';
 import BodyTab from './bodyTab';
 import ImageContainer from '../components/layouts/imageContainer';
 import IconButton from '../components/buttons/iconButton';
+import Storage from '../storage/storage';
 
 const Drawer = createDrawerNavigator();
 
@@ -59,6 +60,12 @@ function CustomDrawerContent(props) {
       source: require('../assets/settings.png'),
     },
   ];
+  const removeData = () => {
+    Storage.removeAuthToken();
+    Storage.removeOrderData();
+    Storage.removeRememberMe();
+  };
+
   const confirmLogout = () =>
     Alert.alert(
       'Logout',
@@ -73,6 +80,7 @@ function CustomDrawerContent(props) {
           text: 'OK',
           onPress: () => {
             console.log('OK Pressed');
+            removeData();
             props.navigation.reset({
               index: 0,
               routes: [
