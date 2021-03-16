@@ -119,7 +119,7 @@ const RowContainer = styled.View`
 
 const Header = styled.Text`
   font-size: 40px;
-  color: #000000;
+  color: #ffd54f;
   font-family: 'Roboto-Light';
   margin: 10px;
 `;
@@ -128,7 +128,7 @@ const Button = styled.TouchableOpacity``;
 
 const Text = styled.Text`
   font-size: 14px;
-  color: #000000;
+  color: #ffd54f;
   font-family: 'Roboto-Regular';
   margin: 5px;
 `;

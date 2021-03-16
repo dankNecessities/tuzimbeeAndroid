@@ -11,7 +11,7 @@ export default function LoginScreen({navigation}) {
 
   return (
     <Container>
-      <StatusBar backgroundColor="#ffd54f" />
+      <StatusBar backgroundColor="#f2994a" />
       <ImageContainer
         source={require('../assets/bee.png')}
         resizeMode="contain"
@@ -28,7 +28,8 @@ export default function LoginScreen({navigation}) {
 
 const Container = styled.View`
   flex-direction: column;
-  background-color: #ffd54f;
+  /* background-color: #ffd54f; */
+  background-color: #333333;
   align-items: center;
   justify-content: center;
   height: 100%;
@@ -39,7 +40,7 @@ const Button = styled.TouchableOpacity``;
 
 const Text = styled.Text`
   font-size: 14px;
-  color: #000000;
+  color: #ffd54f;
   font-family: 'Roboto-Regular';
   margin: 5px;
 `;

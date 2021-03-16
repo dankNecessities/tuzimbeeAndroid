@@ -20,12 +20,12 @@ const Container = styled.TouchableOpacity`
   padding: 12px;
   width: ${(props) => props.width || 180}px;
   margin: ${(props) => props.margin || 10}px;
-  background-color: ${(props) => props.bgcolor || '#333333'};
+  background-color: ${(props) => props.bgcolor || '#f2994a'};
   elevation: 5;
 `;
 
 const Title = styled.Text`
   font-size: 18px;
   font-family: 'Roboto-Medium';
-  color: ${(props) => props.color || '#f2994a'};
+  color: ${(props) => props.color || '#333333'};
 `;

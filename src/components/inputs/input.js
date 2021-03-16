@@ -39,13 +39,13 @@ const Container = styled.View`
   width: ${(props) => props.width || 320}px;
   margin: ${(props) => props.margin || 10}px;
   display: ${(props) => (props.hidden ? 'none' : 'flex')};
-  border: 1px solid ${(props) => props.borderColor || '#333333'};
+  border: 1px solid ${(props) => props.borderColor || '#ffd54f'};
 `;
 
 const FormInput = styled.TextInput`
   background-color: ${(props) => props.bgcolor || 'transparent'};
   font-size: ${(props) => props.font || 18}px;
-  color: #333333;
+  color: #ffd54f;
   text-align: left;
   padding: 12px;
   width: 280px;
