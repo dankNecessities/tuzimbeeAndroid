@@ -43,6 +43,7 @@ export default function LoginForm(props) {
         console.log(result);
         if (result.access_token) {
           Storage.setAuthToken(result.access_token);
+          Storage.setRememberMe(remember);
           goToScreen('Dashboard');
         } else {
           ToastAndroid.show(
