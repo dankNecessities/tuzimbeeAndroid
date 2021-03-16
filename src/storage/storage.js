@@ -15,10 +15,12 @@ const Storage = {
     }
   },
   getRememberMe: () => {
-    return AsyncStorage.getItem('rememberMe');
+    return AsyncStorage.getItem('rememberMe').then((result) => {
+      return JSON.parse(result);
+    });
   },
   setRememberMe: (status) => {
-    AsyncStorage.setItem('rememberMe', status);
+    AsyncStorage.setItem('rememberMe', JSON.stringify(status));
   },
   removeRememberMe: async () => {
     try {
