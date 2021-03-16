@@ -15,6 +15,7 @@ export default function LoginForm(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigation = useNavigation();
 
   const goToScreen = (screen) => {
@@ -78,8 +79,14 @@ export default function LoginForm(props) {
       <Input
         placeholder="Password"
         width={300}
-        secure={true}
+        secure={!showPassword}
         onChangeText={(text) => setPassword(text)}
+        image={
+          showPassword
+            ? require('../../assets/visibility.png')
+            : require('../../assets/visibility_off.png')
+        }
+        onPress={() => setShowPassword(!showPassword)}
       />
       <RowContainer width={300}>
         <RowContainer>
