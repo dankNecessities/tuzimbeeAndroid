@@ -9,7 +9,7 @@ export default function FloatingLoader() {
 
   return (
     <Container left={(window.width - size) / 2 - 10} size={size} depth={depth}>
-      <Loader size="large" color="#4788c7" />
+      <Loader size="large" color="#f2994a" />
     </Container>
   );
 }
