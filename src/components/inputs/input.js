@@ -25,6 +25,7 @@ export default function Input(props) {
         maxLength={props.maxLength}
         onChangeText={props.onChangeText}
         font={props.font}
+        color={props.color}
       />
       {props.image ? (
         <Button onPress={props.onPress}>
@@ -50,7 +51,7 @@ const Container = styled.View`
 const FormInput = styled.TextInput`
   background-color: ${(props) => props.bgcolor || 'transparent'};
   font-size: ${(props) => props.font || 18}px;
-  color: #ffd54f;
+  color: ${(props) => props.color || '#ffd54f'};
   text-align: left;
   padding: 12px;
   width: 280px;
