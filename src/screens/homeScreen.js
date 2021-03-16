@@ -115,6 +115,7 @@ export default function HomeScreen({navigation}) {
           placeholder="Search"
           image={require('../assets/search_home.png')}
           borderColor="#e0e0e0"
+          color="#333333"
         />
         <GenericHeading>Categories</GenericHeading>
         <CategoryContainer>
@@ -143,6 +144,7 @@ export default function HomeScreen({navigation}) {
               return (
                 <Product
                   title={item.title}
+                  key={`${item.title}`}
                   price={item.price}
                   source={item.source}
                   onPress={() => onPressItem(item)}
