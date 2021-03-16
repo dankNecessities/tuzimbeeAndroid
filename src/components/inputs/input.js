@@ -27,7 +27,9 @@ export default function Input(props) {
         font={props.font}
       />
       {props.image ? (
-        <ImageContainer source={props.image} size={20} margin={10} />
+        <Button onPress={props.onPress}>
+          <ImageContainer source={props.image} size={20} margin={8} />
+        </Button>
       ) : null}
     </Container>
   );
@@ -53,3 +55,5 @@ const FormInput = styled.TextInput`
   padding: 12px;
   width: 280px;
 `;
+
+const Button = styled.TouchableOpacity``;
