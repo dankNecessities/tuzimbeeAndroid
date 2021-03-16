@@ -14,6 +14,19 @@ const Storage = {
       console.log(e);
     }
   },
+  getRememberMe: () => {
+    return AsyncStorage.getItem('rememberMe');
+  },
+  setRememberMe: (status) => {
+    AsyncStorage.setItem('rememberMe', status);
+  },
+  removeRememberMe: async () => {
+    try {
+      await AsyncStorage.removeItem('rememberMe');
+    } catch (e) {
+      console.log(e);
+    }
+  },
   getOrderData: () => {
     return AsyncStorage.getItem('order');
   },
