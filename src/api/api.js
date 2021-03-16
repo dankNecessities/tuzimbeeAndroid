@@ -47,6 +47,9 @@ const API = {
   getProduct: (id) => {
     return API.get(API.BaseURL + 'api/products/' + id);
   },
+  getCategories: () => {
+    return API.get(API.BaseURL + 'api/categories/');
+  },
 };
 
 export default API;
