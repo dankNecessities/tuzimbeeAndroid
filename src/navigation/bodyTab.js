@@ -109,24 +109,10 @@ export default function BodyTab({route, navigation}) {
         }}
       />
       <Tab.Screen
-        name="Search"
-        component={SearchStack}
-        options={{
-          title: 'Search',
-        }}
-      />
-      <Tab.Screen
         name="Cart"
         component={CartStack}
         options={{
           title: 'Cart',
-        }}
-      />
-      <Tab.Screen
-        name="Favorites"
-        component={FavoritesStack}
-        options={{
-          title: 'Favorites',
         }}
       />
       <Tab.Screen
