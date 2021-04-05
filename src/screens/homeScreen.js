@@ -13,10 +13,7 @@ export default function HomeScreen({navigation}) {
   const [searchString, setSearchString] = useState('');
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const goToScreen = (screen) => {
-    navigation.navigate(screen);
-  };
+  const [searching, setSearching] = useState(false);
 
   let x = [
     {
@@ -164,62 +161,33 @@ export default function HomeScreen({navigation}) {
         }}>
         <StatusBar backgroundColor="#333333" />
         <Input
-          onChangeText={(text) => setSearchString(text)}
+          onChangeText={(text) => {
+            setSearchString(text);
+          }}
           placeholder="Search"
           image={require('../assets/search_home.png')}
           borderColor="#e0e0e0"
           color="#333333"
           placeholderTextColor="#e0e0e0"
         />
-        <GenericHeading>Categories</GenericHeading>
-        <CategoryContainer>
-          <RowContainer>
-            {x.map((_, i) => {
-              return (
-                <MenuButton
-                  text={_.name}
-                  source={images[_.name]}
-                  onPress={() => onPressCategory(_)}
-                />
-              );
-            })}
-          </RowContainer>
-        </CategoryContainer>
-        <GenericHeading>Trending</GenericHeading>
-        <CategoryContainer>
-          <ItemScroll
-            horizontal={true}
-            data={trendingRows}
-            renderItem={({item, index}) => {
-              return (
-                <Product
-                  title={item.title}
-                  key={`${item.title}`}
-                  price={item.price}
-                  source={item.source}
-                  onPress={() => onPressItem(item)}
-                />
-              );
-            }}
-          />
-        </CategoryContainer>
-        <GenericHeading>Latest</GenericHeading>
-        <CategoryContainer>
-          <ItemScroll
-            horizontal={true}
-            data={trendingRows}
-            renderItem={({item, index}) => {
-              return (
-                <Product
-                  title={item.title}
-                  price={item.price}
-                  source={item.source}
-                  onPress={() => onPressItem(item)}
-                />
-              );
-            }}
-          />
-        </CategoryContainer>
+        {searchString.length > 0 ? null : (
+          <>
+            <GenericHeading>Categories</GenericHeading>
+            <CategoryContainer>
+              <RowContainer>
+                {x.map((_, i) => {
+                  return (
+                    <MenuButton
+                      text={_.name}
+                      source={images[_.name]}
+                      onPress={() => onPressCategory(_)}
+                    />
+                  );
+                })}
+              </RowContainer>
+            </CategoryContainer>
+          </>
+        )}
       </Container>
     </MainContainer>
   );
@@ -251,6 +219,8 @@ const CategoryContainer = styled.ScrollView`
   flex-direction: column;
   width: 100%;
 `;
+
+const SearchActivity = styled.ActivityIndicator``;
 
 const ItemScroll = styled.FlatList`
   flex-direction: row;
