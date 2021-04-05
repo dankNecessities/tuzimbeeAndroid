@@ -38,13 +38,13 @@ export default function AuthStack() {
           headerShown: false,
         }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Reset"
         component={PasswordResetScreen}
         options={{
           headerShown: false,
         }}
-      />
+      /> */}
       <Stack.Screen
         name="Dashboard"
         component={Dashboard}

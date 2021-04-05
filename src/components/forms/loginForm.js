@@ -100,7 +100,7 @@ export default function LoginForm(props) {
           />
           <Text>Remember me</Text>
         </RowContainer>
-        <Button onPress={() => goToScreen('Reset')}>
+        <Button>
           <Text>Forgot Password?</Text>
         </Button>
       </RowContainer>
