@@ -11,7 +11,7 @@ export default function SignInScreen({navigation}) {
 
   return (
     <Container>
-      <StatusBar backgroundColor="#ffd54f" />
+      <StatusBar backgroundColor="#f2994a" />
       <Header>Sign Up</Header>
       <Input placeholder="Username" width={300} />
       <Input placeholder="Phone Number" width={300} keyboardType="numeric" />
@@ -28,7 +28,7 @@ export default function SignInScreen({navigation}) {
 
 const Container = styled.View`
   flex-direction: column;
-  background-color: #ffd54f;
+  background-color: #333333;
   align-items: center;
   justify-content: center;
   height: 100%;
@@ -37,7 +37,7 @@ const Container = styled.View`
 
 const Header = styled.Text`
   font-size: 40px;
-  color: #000000;
+  color: #ffd54f;
   font-family: 'Roboto-Light';
   margin: 10px;
 `;
@@ -46,7 +46,7 @@ const Button = styled.TouchableOpacity``;
 
 const Text = styled.Text`
   font-size: 14px;
-  color: #000000;
+  color: #ffd54f;
   font-family: 'Roboto-Regular';
   margin: 5px;
 `;
