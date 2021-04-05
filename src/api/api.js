@@ -42,13 +42,16 @@ const API = {
     formData.append('client_secret', 'jg_adrt12');
     formData.append('scope', 'openid api.tuzimbee');
 
-    return API.post(API.BaseURL + 'connect/token', formData, {}, false);
+    return API.post(`${API.BaseURL}connect/token`, formData, {}, false);
   },
   getProduct: (id) => {
-    return API.get(API.BaseURL + 'api/products/' + id);
+    return API.get(`${API.BaseURL}api/products/${id}`);
+  },
+  searchProducts: (name) => {
+    return API.get(`${API.BaseURL}api/products/quick-search?name=${name}`);
   },
   getCategories: () => {
-    return API.get(API.BaseURL + 'api/categories/');
+    return API.get(`${API.BaseURL}api/categories/`);
   },
 };
 
