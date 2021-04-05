@@ -13,7 +13,7 @@ export default function LoginScreen({navigation}) {
     <Container>
       <StatusBar backgroundColor="#f2994a" />
       <ImageContainer
-        source={require('../assets/bee.png')}
+        source={require('../assets/tee.png')}
         resizeMode="contain"
         size={180}
         margin={5}
