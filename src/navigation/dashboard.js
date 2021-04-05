@@ -10,6 +10,7 @@ import {
 import {createStackNavigator} from '@react-navigation/stack';
 import styled from 'styled-components/native';
 import BodyTab from './bodyTab';
+import AuthStack from './authStack';
 import ImageContainer from '../components/layouts/imageContainer';
 import IconButton from '../components/buttons/iconButton';
 import Storage from '../storage/storage';
@@ -41,6 +42,7 @@ export default function Dashboard({route, navigation}) {
       <Drawer.Screen name="Home" component={BodyTab} />
       <Drawer.Screen name="Account" title="My Account" component={BodyTab} />
       <Drawer.Screen name="Settings" component={BodyTab} />
+      <Drawer.Screen name="Auth" component={AuthStack} />
     </Drawer.Navigator>
   );
 }
