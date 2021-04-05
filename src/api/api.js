@@ -11,9 +11,9 @@ const API = {
           ...headers,
         },
       }).then((response) => {
-        return response.json().then((resultData) => {
-          return resultData;
-        });
+        let result =
+          response.status === 401 ? response.status : response.json();
+        return result;
       });
     });
   },
@@ -27,9 +27,9 @@ const API = {
         },
         body: isJSON ? JSON.stringify(data) : data,
       }).then((response) => {
-        return response.json().then((resultData) => {
-          return resultData;
-        });
+        let result =
+          response.status === 401 ? response.status : response.json();
+        return result;
       });
     });
   },
