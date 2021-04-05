@@ -3,85 +3,17 @@ import {StatusBar} from 'react-native';
 import styled from 'styled-components/native';
 import Input from '../components/inputs/input';
 import MenuButton from '../components/buttons/menuButton';
-import Product from '../components/items/product';
 import GenericHeading from '../components/headings/genericHeading';
-import Utils from '../utils/utils';
-import API from '../api/api';
 import FloatingLoader from '../components/loaders/floatingLoader';
 import ProductList from '../components/lists/productList';
+import API from '../api/api';
+import Utils from '../utils/utils';
 
 export default function HomeScreen({navigation}) {
   const [searchString, setSearchString] = useState('');
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searching, setSearching] = useState(false);
-
-  let x = [
-    {
-      id: 2,
-      name: 'Building Material',
-      displayOrder: 0,
-      includeInMenu: true,
-      isPublished: true,
-      parentId: null,
-    },
-    {
-      id: 8,
-      name: 'Building Material >> Cement',
-      displayOrder: 0,
-      includeInMenu: true,
-      isPublished: true,
-      parentId: 2,
-    },
-    {
-      id: 3,
-      name: 'Electrical',
-      displayOrder: 0,
-      includeInMenu: true,
-      isPublished: true,
-      parentId: null,
-    },
-    {
-      id: 5,
-      name: 'Networking',
-      displayOrder: 0,
-      includeInMenu: true,
-      isPublished: true,
-      parentId: null,
-    },
-    {
-      id: 7,
-      name: 'Paint',
-      displayOrder: 0,
-      includeInMenu: true,
-      isPublished: true,
-      parentId: null,
-    },
-    {
-      id: 1,
-      name: 'Plumbing',
-      displayOrder: 0,
-      includeInMenu: true,
-      isPublished: true,
-      parentId: null,
-    },
-    {
-      id: 4,
-      name: 'Safety Gear',
-      displayOrder: 0,
-      includeInMenu: false,
-      isPublished: true,
-      parentId: null,
-    },
-    {
-      id: 6,
-      name: 'Tools',
-      displayOrder: 0,
-      includeInMenu: true,
-      isPublished: true,
-      parentId: null,
-    },
-  ];
 
   const images = {
     Plumbing: require('../assets/menu/drop.png'),
@@ -93,62 +25,22 @@ export default function HomeScreen({navigation}) {
     'Safety Gear': require('../assets/menu/alert-triangle.png'),
   };
 
-  const trendingRows = [
-    {
-      id: 1,
-      title: 'Tough Bond',
-      price: '10000',
-      manufacturer: 'Kenya Adhesive Products',
-      description:
-        'A unique blend of adhesive formed with high quality synthetic rubber' +
-        ' ideally designed for bonding Formica, laminates, PVC floor' +
-        ' coverings, fabrics, foam sheets and other domestic and industrial' +
-        ' items.',
-      source: require('../assets/products/bond.jpg'),
-      units: 'Ltr(s)',
-    },
-    {
-      id: 2,
-      title: 'Fridge Guard',
-      price: '20000',
-      manufacturer: 'Sollatek',
-      description:
-        'Low power (under-voltage) will certainly damage any refrigeration appliance’s' +
-        ' compressor. The FridgeGuard protects your appliance by disconnecting the power ' +
-        'when it goes below unacceptable level. Additionally, there is a delay when power' +
-        ' returns to normal. This will ensure that the appliance is not switched on-off ' +
-        'repeatedly during fluctuations nor is it subjected to a massive surge normally ' +
-        'experienced when power returns after power cuts.',
-      source: require('../assets/products/fg.jpg'),
-      units: 'Pc(s)',
-    },
-    {
-      id: 3,
-      title: 'Electric Drill',
-      price: '45000',
-      manufacturer: 'Vishal Power Tools',
-      description:
-        'With an objective to fulfill the ever-evolving demands of our' +
-        ' clients, we are engaged in offering a wide assortment of Hitachi DV13VSS Hammer Drill.',
-      source: require('../assets/products/drill.jpg'),
-      units: 'Pc(s)',
-    },
-  ];
-
-  const onPressItem = (item) => {
-    navigation.navigate('ItemScreen', item);
-  };
-
   const onPressCategory = (category) => {
     navigation.navigate('CategoryScreen', category);
-    // console.log(category.text);
   };
 
   useEffect(() => {
-    API.getCategories().then((result) => {
-      console.log(result);
-      // Utils.cutArray(result, )
-    });
+    API.getCategories()
+      .then((result) => {
+        if (result === 401) {
+          Utils.redirectToAuth(navigation);
+        } else {
+          setCategories(result);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (
@@ -186,7 +78,7 @@ export default function HomeScreen({navigation}) {
             <GenericHeading>Categories</GenericHeading>
             <CategoryContainer>
               <RowContainer>
-                {x.map((_, i) => {
+                {categories.map((_, i) => {
                   return (
                     <MenuButton
                       text={_.name}
@@ -228,10 +120,5 @@ const RowContainer = styled.View`
 
 const CategoryContainer = styled.ScrollView`
   flex-direction: column;
-  width: 100%;
-`;
-
-const ItemScroll = styled.FlatList`
-  flex-direction: row;
   width: 100%;
 `;
