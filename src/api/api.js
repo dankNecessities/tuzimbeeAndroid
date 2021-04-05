@@ -44,6 +44,9 @@ const API = {
 
     return API.post(`${API.BaseURL}connect/token`, formData, {}, false);
   },
+  getProducts: () => {
+    return API.get(`${API.BaseURL}api/products/`);
+  },
   getProduct: (id) => {
     return API.get(`${API.BaseURL}api/products/${id}`);
   },
