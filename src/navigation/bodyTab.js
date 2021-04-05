@@ -144,11 +144,15 @@ function TabBarIcon(props) {
   const [total, setTotal] = useState(false);
 
   const updateCartTotal = () => {
-    Storage.getOrderData().then((response) => {
-      let result = JSON.parse(response);
-      console.log(result);
-      setTotal(result.length === 'null' ? 0 : result.length);
-    });
+    Storage.getOrderData()
+      .then((response) => {
+        let result = JSON.parse(response);
+        setTotal(result.length);
+      })
+      .catch((error) => {
+        console.log(error);
+        setTotal(0);
+      });
   };
 
   // Update on first render
