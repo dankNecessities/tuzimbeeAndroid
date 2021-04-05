@@ -8,6 +8,7 @@ import GenericHeading from '../components/headings/genericHeading';
 import Utils from '../utils/utils';
 import API from '../api/api';
 import FloatingLoader from '../components/loaders/floatingLoader';
+import ProductList from '../components/lists/productList';
 
 export default function HomeScreen({navigation}) {
   const [searchString, setSearchString] = useState('');
@@ -165,12 +166,22 @@ export default function HomeScreen({navigation}) {
             setSearchString(text);
           }}
           placeholder="Search"
-          image={require('../assets/search_home.png')}
+          image={
+            searchString.length > 0
+              ? require('../assets/close.png')
+              : require('../assets/search_home.png')
+          }
+          onPress={() => {
+            setSearchString('');
+          }}
+          value={searchString}
           borderColor="#e0e0e0"
           color="#333333"
           placeholderTextColor="#e0e0e0"
         />
-        {searchString.length > 0 ? null : (
+        {searchString.length > 0 ? (
+          <ProductList />
+        ) : (
           <>
             <GenericHeading>Categories</GenericHeading>
             <CategoryContainer>
@@ -219,8 +230,6 @@ const CategoryContainer = styled.ScrollView`
   flex-direction: column;
   width: 100%;
 `;
-
-const SearchActivity = styled.ActivityIndicator``;
 
 const ItemScroll = styled.FlatList`
   flex-direction: row;
