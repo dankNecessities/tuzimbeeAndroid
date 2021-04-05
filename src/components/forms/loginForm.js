@@ -56,7 +56,7 @@ export default function LoginForm(props) {
       })
       .catch((error) => {
         ToastAndroid.show(
-          'Netowrk request failed',
+          'Network request failed',
           ToastAndroid.SHORT,
           ToastAndroid.CENTER,
         );
