@@ -18,10 +18,6 @@ export default function LoginForm(props) {
   const [showPassword, setShowPassword] = useState(false);
   const navigation = useNavigation();
 
-  const goToScreen = (screen) => {
-    navigation.navigate(screen);
-  };
-
   const validateInputs = () => {
     if (username.length <= 0) {
       ToastAndroid.show(
@@ -48,7 +44,7 @@ export default function LoginForm(props) {
         if (result.access_token) {
           Storage.setAuthToken(result.access_token);
           Storage.setRememberMe(remember);
-          goToScreen('Dashboard');
+          navigation.reset({index: 0, routes: [{name: 'Dashboard'}]});
         } else {
           ToastAndroid.show(
             'Invalid username or password',
